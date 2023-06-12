@@ -1,0 +1,80 @@
+
+import image_list from "@/assets/list/image_list.json"
+import sticker_list from "@/assets/list/sticker_list.json"
+import tag_list from "@/assets/list/tag_list.json"
+
+import { bookmark_list } from "./bookmark.js"
+
+/**
+ * 序号转换为pack名
+ * @param {number} num 
+ * @returns 
+ */
+export function pack_name(num) {
+    if(JSON.stringify(num).includes("pack")){
+        return num
+    }
+    const num_fill = JSON.stringify(num).padStart(4, "0")
+    return "pack" + num_fill
+}
+
+/**
+ * 图片名拆分tag
+ * @param {string} name 
+ * @returns 
+ */
+export function get_tag_list(name) {
+    name = name.split(".").slice(0, -1).join(".")
+    let tag_list = name.split("_").slice(1)
+
+    tag_list = tag_list.filter(item => item != "")
+
+    return tag_list
+}
+
+
+/**
+ * 返回图片显示列表
+ * @param {string} group ["image","sticker"]
+ * @param {number} num pack序号
+ * @returns 
+ */
+export function set_show_list(group, num,title) {
+    const show_list = {
+        title:title,
+        list: [],
+        path: []
+    }
+    if (group == "image") {
+        show_list.list = image_list[pack_name(num)]
+        show_list.path = show_list.list.map(item => "image/" + pack_name(num) + "/" + item)
+    } else if (group == "sticker") {
+        show_list.list = sticker_list[pack_name(num)]
+        show_list.path = show_list.list.map(item => "sticker/" + pack_name(num) + "/" + item)
+    }
+    return show_list
+}
+
+
+
+/**
+ * 生成tag列表,用于el-autocomplete
+ * @returns 
+ */
+export function build_suggestions() {
+    let sug_list = []
+    for (let index in tag_list) {
+        sug_list.push({ value: tag_list[index] })
+    }
+    return sug_list
+}
+
+/**
+ * 生成tag列表,带字母分隔,用于显示
+ * @returns 
+ */
+export function tag_list_bookmark() {
+    const new_list = [...tag_list, ...bookmark_list]
+    const collator = new Intl.Collator('zh', { sensitivity: 'base' });
+    return new_list.sort(collator.compare)
+}
