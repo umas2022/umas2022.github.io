@@ -33,28 +33,6 @@ export function get_tag_list(name) {
 }
 
 
-/**
- * 返回图片显示列表
- * @param {string} group ["image","sticker"]
- * @param {number} num pack序号
- * @returns 
- */
-export function set_show_list(group, num,title) {
-    const show_list = {
-        title:title,
-        list: [],
-        path: []
-    }
-    if (group == "image") {
-        show_list.list = image_list[pack_name(num)]
-        show_list.path = show_list.list.map(item => "image/" + pack_name(num) + "/" + item)
-    } else if (group == "sticker") {
-        show_list.list = sticker_list[pack_name(num)]
-        show_list.path = show_list.list.map(item => "sticker/" + pack_name(num) + "/" + item)
-    }
-    return show_list
-}
-
 
 
 /**

@@ -28,10 +28,10 @@ div.cp-tag {
     border-radius: 5px;
     white-space: nowrap;
     padding: 3px;
-    width: 100%;
     height: 20px;
     cursor: pointer;
     font-size: 14px;
+    display: inline-block;
 }
 div.danger{
     background-color: rgba(0, 132, 255, 0.4);

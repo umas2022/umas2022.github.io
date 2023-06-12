@@ -68,8 +68,6 @@ import RightEdit from "./RightEdit.vue"
 import { useStore } from "vuex";
 const store = useStore();
 
-import { pack_name, set_show_list } from "@/utils/tools.js"
-
 // 背景图片
 const bg_path = "background/pattern-" + Math.ceil(Math.random() * 33) + ".svg"
 
@@ -156,7 +154,7 @@ div.bg-box {
   height: 100%;
   width: 100%;
   white-space: nowrap;
-  overflow: hidden;
+  
 
   div.bg-one {
     position: relative;
@@ -178,23 +176,24 @@ div.bg-box {
 div.home {
   display: flex;
   flex-direction: row;
-  overflow: hidden;
 }
 
 // 左侧导航
 div.body-navi {
-  height: calc(100vh - 20px);
+  height: auto;
+}
+div.body-navi:hover ~ div.body-center{
+  margin-left: 400px;
 }
 
-
 div.body-center {
-  width: calc(100vw - 15px);
+  width: calc(100vw - 95px);
   height: calc(100vh - 20px);
   display: flex;
   flex-direction: row;
   position: absolute;
-  // border: solid 5px red;
-
+  margin-left: 80px;
+  transition: 0.3s ease-in-out;
 
   // loading页
   div.body-loading {
@@ -225,5 +224,8 @@ div.body-center {
 
 .pointer {
   cursor: pointer;
+}
+body{
+  overflow: hidden;
 }
 </style>

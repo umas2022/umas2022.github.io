@@ -36,9 +36,8 @@
     </div>
 </template>
 <script lang="ts" setup>
-import { onMounted, ref, inject, computed } from "vue"
+import { onMounted, ref, inject, computed,watch } from "vue"
 import type { Ref } from "vue"
-import { set_show_list, pack_name } from "@/utils/tools.js"
 
 import MyTag from "@/components/MyTag.vue"
 
@@ -57,17 +56,6 @@ import CenterShow from "./CenterShow.vue"
 
 
 
-// 跳转最新
-const go_img = () => {
-    store.commit("set_list", set_show_list("image", img_total.value, "第" + JSON.stringify(img_total.value) + "期"))
-    store.commit("set_page", "show")
-}
-const go_stk = () => {
-    store.commit("set_list", set_show_list("sticker", stk_total.value, "第" + JSON.stringify(img_total.value) + "期"))
-    store.commit("set_page", "show")
-}
-
-
 // 搜索输入
 const search_input = ref("")
 
@@ -75,16 +63,18 @@ const search_input = ref("")
 // 搜索结果拼接函数
 const add_search_list = (show_list: { title: string, list: string[], path: string[] }, pack_num: number | string, stk_name: string) => {
     show_list.list.push(stk_name)
-    show_list.path.push("sticker/" + pack_name(pack_num) + "/" + stk_name)
+    show_list.path.push(stk_name)
     return show_list
 }
 
 // 搜索记录列表
 const res_list = ref<{ title: string, list: string[], path: string[] }[]>([])
+
+
 onMounted(() => {
     res_list.value = []
     res_list.value[0] = { title: "搜索结果", list: [], path: [] }
-    for (let pack in sticker_urls) {
+    for (let pack in sticker_urls.value) {
         for (let id in sticker_urls.value[pack]) {
             res_list.value[0] = add_search_list(res_list.value[0], pack, sticker_urls.value[pack][id])
         }

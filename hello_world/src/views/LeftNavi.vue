@@ -64,6 +64,24 @@
             </el-scrollbar>
         </div>
 
+
+        <!-- 左侧导航按钮:视频列表 -->
+        <div class="video-box navi-box">
+            <div class="video-icon navi-icon">
+                <img width="36" height="36" src="icon/video.svg" alt="icon">
+            </div>
+            <el-scrollbar style="height: calc(100% - 50px)">
+                <div class="navi-body">
+                    <h3>视频存档</h3>
+                    <div class="navi-each pointer" v-for="index in vid_total" :key="index"
+                        @click="change_img_group('video', index)">
+                        第{{ vid_total + 1 - index }}期
+                        <img width="10" height="10" src="icon/right.svg" alt="icon">
+                    </div>
+                </div>
+            </el-scrollbar>
+        </div>
+
         <!-- 左侧导航按钮:设置 -->
         <div class="set-box navi-box">
             <div class="set-icon navi-icon">
@@ -130,9 +148,7 @@ import { ref,inject, computed } from "vue"
 import type { Ref } from "vue"
 import { useStore } from "vuex";
 const store = useStore();
-
-import { pack_name, set_show_list } from "@/utils/tools.js"
-
+import {pack_name} from "@/utils/tools.js"
 
 const image_urls:Ref<any> = inject("image_urls")!
 const sticker_urls:Ref<any> = inject("sticker_urls")!
@@ -140,6 +156,7 @@ const video_urls:Ref<any> = inject("video_urls")!
 
 const img_total = computed(()=> Object.keys(image_urls.value).length) 
 const stk_total = computed(()=> Object.keys(sticker_urls.value).length) 
+const vid_total = computed(()=> Object.keys(video_urls.value).length) 
 
 // 返回主页
 const go_home=()=>{
@@ -149,6 +166,23 @@ const go_home=()=>{
 // 去开发页
 const go_dev=()=>{
     store.commit('set_page', 'dev')
+}
+
+// 图片组格式化生成函数
+const set_show_list=(group:string, num:number,title:string)=>{
+    const show_list = {
+        title:title,
+        list: [],
+        path: []
+    }
+    if (group == "image") {
+        show_list.list = image_urls.value[pack_name(num)]
+        show_list.path = show_list.list
+    } else if (group == "sticker") {
+        show_list.list = sticker_urls.value[pack_name(num)]
+        show_list.path = show_list.list
+    }
+    return show_list
 }
 
 // 切换图片组
@@ -185,7 +219,7 @@ div.body-navi {
 }
 
 div.navi-box {
-    height: 40px;
+    // height: 40px;
     width: 40px;
     border-radius: 5px;
     transition: 0.3s ease-out;
@@ -194,13 +228,13 @@ div.navi-box {
     display: inline-block;
 
     z-index: 99;
+    margin: 3px;
 }
 
 div.navi-box:hover {
     width: 350px;
     border: solid 2px rgba(0, 0, 0, 0.7);
-    height: calc(100% - 250px);
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.3);
 }
 
 
@@ -235,7 +269,7 @@ div.navi-each {
     margin: 5px;
     margin-left: 50px;
     padding: 5px 15px 5px 15px;
-    background-color: rgba(255, 255, 255, 1);
+    background-color: rgba(255, 255, 255, 0.3);
 }
 
 
@@ -243,7 +277,9 @@ div.navi-each {
 div.home-icon {
     padding: 3px 1px 1px 3px;
 }
-
+div.home-box{
+    height: 40px;
+}
 div.home-box:hover {
     width: 300px;
     border: solid 2px rgba(0, 0, 0, 0.7);
@@ -251,22 +287,62 @@ div.home-box:hover {
 }
 
 /* 弔图列表栏 */
+div.list-box{
+    height: 40px;
+}
+div.list-box:hover{
+    height: calc(100vh - 350px);
+}
 div.list-icon {
     padding: 3px 0px 1px 4px;
 }
 
+
 /* 表情包列表栏 */
+div.sticker-box{
+    height: 40px;
+    max-height: calc(100vh - 350px);
+}
+div.sticker-box:hover{
+    height: calc(100vh - 250px);
+}
 div.sticker-icon {
+    padding: 4px 1px 0px 3px;
+}
+
+/* 视频列表栏 */
+div.video-box{
+    height: 40px;
+    max-height: calc(100vh - 350px);
+}
+div.video-box:hover{
+    height: calc(100vh - 250px);
+}
+div.video-icon {
     padding: 4px 1px 0px 3px;
 }
 
 
 /* 设置栏 */
+div.set-box{
+    height: 40px;
+    max-height: calc(100vh - 350px);
+}
+div.set-box:hover{
+    height: calc(100vh - 250px);
+}
 div.set-icon {
     padding: 4px 0px 0px 4px;
 }
 
 /* 信息栏 */
+div.info-box{
+    height: 40px;
+    max-height: calc(100vh - 350px);
+}
+div.info-box:hover{
+    height: calc(100vh - 250px);
+}
 div.info-icon {
     padding: 4px 0px 0px 4px;
 }
