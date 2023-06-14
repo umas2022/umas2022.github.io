@@ -128,7 +128,7 @@
                 <div class="navi-body">
                     <h3>info</h3>
                     <div class="navi-each"> by:umas </div>
-                    <div class="navi-each">visit: <a href="https://github.com/umas2022/backyard_lite">GitHub</a>
+                    <div class="navi-each">visit: <a href="https://github.com/umas2022/umas2022.github.io">GitHub</a>
                     </div>
                     <div class="navi-each"> update: <br>
                         update_list_json还没更新！

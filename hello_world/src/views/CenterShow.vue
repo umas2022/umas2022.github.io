@@ -15,12 +15,18 @@
                 ({{ props.show_list.path[index].split("/")[props.show_list.path[index].split("/").length - 2] }} /
                 {{ props.show_list.path[index].split("/")[props.show_list.path[index].split("/").length - 1] }})
             </div>
-            <img style="width: 100%;" :src="props.show_list.path[index]" alt="">
+            <video v-if="url_type(props.show_list.path[index]) == 'video'" controls>
+                <source :src="props.show_list.path[index]" type="video/mp4">
+                <source :src="props.show_list.path[index]" type="video/webm">
+            </video>
+            <img v-else-if="url_type(props.show_list.path[index]) == 'image'" :src="props.show_list.path[index]">
+            <span v-else> Video format is not supported: {{ props.show_list.path[index] }}</span>
+
 
             <!-- tag栏 -->
             <div class="tag-box" v-if="store.state.setval.show_tag" v-show="!store.state.setval.edit_tag">
                 <div class="tag-each" v-for="(tag, index) in get_tag_list_re(img_name)" :key="index">
-                    <my-tag >{{ tag }}</my-tag>
+                    <my-tag>{{ tag }}</my-tag>
                 </div>
             </div>
 
@@ -51,14 +57,15 @@
 <script lang="ts" setup>
 import { defineProps, ref, watch, computed, inject } from "vue";
 import type { Ref } from "vue"
-import { ElMessage } from 'element-plus'
-import { ElInput } from 'element-plus'
-import MyTag from "@/components/MyTag.vue"
-import {pack_name} from "@/utils/tools.js"
-
-import { get_tag_list} from "@/utils/tools.js"
 import { useStore } from "vuex";
 const store = useStore();
+import { ElMessage } from 'element-plus'
+import { ElInput } from 'element-plus'
+
+import MyTag from "@/components/MyTag.vue"
+import { pack_name } from "@/utils/tools.js"
+import { get_tag_list } from "@/utils/tools.js"
+import { url_type } from "@/utils/tools.js"
 
 
 const image_urls: Ref<any> = inject("image_urls")!
@@ -161,9 +168,9 @@ const save_tag_edit = () => {
 
 
 // 图片组格式化生成函数
-const set_show_list=(group:string, num:number,title:string)=>{
+const set_show_list = (group: string, num: number, title: string) => {
     const show_list = {
-        title:title,
+        title: title,
         list: [],
         path: []
     }
@@ -180,25 +187,25 @@ const set_show_list=(group:string, num:number,title:string)=>{
 
 // 下一页/上一页
 const page_pre = () => {
-    let group = props.show_list.path[0].split("/")[props.show_list.path[0].split("/").length-3]
-    let pack_name = props.show_list.path[0].split("/")[props.show_list.path[0].split("/").length-2]
+    let group = props.show_list.path[0].split("/")[props.show_list.path[0].split("/").length - 3]
+    let pack_name = props.show_list.path[0].split("/")[props.show_list.path[0].split("/").length - 2]
     let pack_num = parseInt(pack_name.replace("pack", ""))
     if (pack_num == 1) {
         ElMessage.success("到头啦!")
         return
     }
-    store.commit("set_list", set_show_list(group, pack_num - 1,"第"+JSON.stringify(pack_num - 1) +"期"))
+    store.commit("set_list", set_show_list(group, pack_num - 1, "第" + JSON.stringify(pack_num - 1) + "期"))
 }
 const page_next = () => {
-    let group = props.show_list.path[0].split("/")[props.show_list.path[0].split("/").length-3]
-    let pack_name = props.show_list.path[0].split("/")[props.show_list.path[0].split("/").length-2]
+    let group = props.show_list.path[0].split("/")[props.show_list.path[0].split("/").length - 3]
+    let pack_name = props.show_list.path[0].split("/")[props.show_list.path[0].split("/").length - 2]
     let pack_num = parseInt(pack_name.replace("pack", ""))
     let max = group == "image" ? img_total.value : stk_total.value
     if (pack_num == max) {
         ElMessage.success("到头啦!")
         return
     }
-    store.commit("set_list", set_show_list(group, pack_num + 1,"第"+JSON.stringify(pack_num - 1)+"期"))
+    store.commit("set_list", set_show_list(group, pack_num + 1, "第" + JSON.stringify(pack_num - 1) + "期"))
 }
 
 
@@ -224,6 +231,14 @@ div.img-each {
     margin: auto;
     margin-bottom: 15px;
     padding: 15px;
+
+    img {
+        width: 100%;
+    }
+
+    video {
+        width: 100%;
+    }
 }
 
 div.tag-box {
@@ -231,7 +246,8 @@ div.tag-box {
     height: 50%;
     display: flex;
     flex-wrap: wrap;
-    .tag-each{
+
+    .tag-each {
         padding: 3px;
     }
 }

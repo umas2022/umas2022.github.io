@@ -3,7 +3,7 @@
 
         <div class="search-box">
 
-            <el-button type="danger" @click=test_button> test</el-button>
+            <!-- <el-button type="danger" @click=test_button> test</el-button> -->
 
 
             <div class="img-box " v-if="res_list.length == 1">

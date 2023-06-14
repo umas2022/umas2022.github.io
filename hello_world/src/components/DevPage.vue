@@ -1,39 +1,33 @@
 <template>
     <div class="dev-box">
-        <h3>静态资源跨项目访问demo</h3>
-        <img width="300" v-for="item in image_urls" :key="item" :src="item" crossorigin="anonymous" alt="Online Image">
+        <h3>视频测试</h3>
+        <!-- <img width="300" src="test/test.mp4" crossorigin="anonymous" alt="Online Image"> -->
 
-        <el-button type="danger" @click=get_list_img>test</el-button>
-        {{ image_index }}
+        <video v-if="url_type(source_url)=='video'" controls >
+            <source :src="source_url" type="video/mp4">
+            <source :src="source_url" type="video/webm">
+        </video>
+        <img v-else-if="url_type(source_url)=='image'" :src="source_url" >
+        <span v-else> Video format is not supported: {{ source_url }}</span>
+
+        <el-button type="danger" @click=test_button>test</el-button>
     </div>
 </template>
 
 <script lang="ts" setup>
-import axios from "axios"
 import { ref } from "vue"
 import type { Ref } from "vue"
 
-import { url_image_list, url_sticker_list, url_video_list, url_tag_list } from "@/utils/url.js"
-import { url_image, url_sticker, url_video } from "@/utils/url.js"
+import { url_type } from "@/utils/tools.js"
 
-const image_index = ref("")
-const image_urls: Ref<Array<string>> = ref([])
+const source_url = "test/test.mp4"
+// const source_url = "favicon.png"
 
-const get_list_img = async () => {
-    try {
-        const response = await fetch(url_image_list)
-        const data = await response.json()
-        image_index.value = data
-        for (let pack in data) {
-            for (let i in data[pack]) {
-                image_urls.value.push(url_image + pack + "/" + data[pack][i])
-            }
-        }
-    } catch (error) {
-        console.error(error)
-    }
+const test_button = () => {
+    console.log("test")
+    console.log(source_url.split('.').pop())
+    
 }
-
 </script>
 <style lang="scss" scoped>
 div.dev-box {
@@ -41,5 +35,12 @@ div.dev-box {
     width: 100vw;
     margin-left: 150px;
     border: solid 1px red;
+
+    video{
+        width: 30%;
+    }
+    image{
+        width: 30%;
+    }
 }
 </style>
