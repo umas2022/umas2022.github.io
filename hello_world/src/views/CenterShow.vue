@@ -1,7 +1,6 @@
 <template>
     <div>
-        <!-- <h1>show施工中</h1>
-        <el-button type="danger" @click=test_button> test</el-button> -->
+        <!-- <el-button type="danger" @click=test_button> test</el-button> -->
 
         <el-button v-if="store.state.setval.edit_tag" type="primary" plain @click="save_tag_edit"
             style="margin-left: 50px;">导出修改</el-button>
@@ -74,6 +73,7 @@ const video_urls: Ref<any> = inject("video_urls")!
 const tag_index: Ref<any> = inject("tag_index")!
 const img_total = computed(() => Object.keys(image_urls.value).length)
 const stk_total = computed(() => Object.keys(sticker_urls.value).length)
+const vid_total = computed(() => Object.keys(video_urls.value).length)
 
 // 父组件传参
 const props = defineProps<{
@@ -200,7 +200,7 @@ const page_next = () => {
     let group = props.show_list.path[0].split("/")[props.show_list.path[0].split("/").length - 3]
     let pack_name = props.show_list.path[0].split("/")[props.show_list.path[0].split("/").length - 2]
     let pack_num = parseInt(pack_name.replace("pack", ""))
-    let max = group == "image" ? img_total.value : stk_total.value
+    let max = group == "image" ? img_total.value : group == "sticker" ? stk_total.value : vid_total.value
     if (pack_num == max) {
         ElMessage.success("到头啦!")
         return
@@ -212,6 +212,7 @@ const page_next = () => {
 // test按钮
 const test_button = () => {
     console.log("test")
+    console.log(props.show_list)
 }
 
 </script>

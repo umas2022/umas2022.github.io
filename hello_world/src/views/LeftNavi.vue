@@ -181,18 +181,26 @@ const set_show_list=(group:string, num:number,title:string)=>{
     } else if (group == "sticker") {
         show_list.list = sticker_urls.value[pack_name(num)]
         show_list.path = show_list.list
+    } else if (group == "video"){
+        show_list.list = video_urls.value[pack_name(num)]
+        show_list.path = show_list.list
     }
     return show_list
 }
 
 // 切换图片组
 const change_img_group = (group: string, num: number) => {
+    console.log(group)
+    console.log(num)
     if (group == "image") {
         store.commit("set_list", set_show_list(group, img_total.value + 1 - num,"第"+JSON.stringify(img_total.value + 1 - num) +"期"))
     } else if (group == "sticker") {
-        store.commit("set_list", set_show_list(group, stk_total.value + 1 - num,"第"+JSON.stringify(img_total.value + 1 - num) +"期"))
+        store.commit("set_list", set_show_list(group, stk_total.value + 1 - num,"第"+JSON.stringify(stk_total.value + 1 - num) +"期"))
+    } else if (group=="video"){
+        store.commit("set_list", set_show_list(group, vid_total.value + 1 - num,"第"+JSON.stringify(vid_total.value + 1 - num) +"期"))
     }
     store.commit("set_page", "show")
+    console.log(store.state.show_list)
 }
 
 // 设置参数

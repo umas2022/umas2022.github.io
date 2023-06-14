@@ -142,8 +142,7 @@ onMounted(() => {
 
 // test按钮
 const test_button = () => {
-  console.log(image_index.value)
-  console.log(image_urls.value)
+  console.log(video_urls.value)
 }
 </script>
 
