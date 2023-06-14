@@ -86,7 +86,7 @@ watch(() => store.state.setval.right_navi, () => {
 })
 
 
-import { url_image_list, url_sticker_list, url_video_list, url_tag_list } from "@/utils/url.js"
+import { url_image_list, url_sticker_list, url_video_list, url_tag_list, url_update_list } from "@/utils/url.js"
 import { url_image, url_sticker, url_video } from "@/utils/url.js"
 
 // 获取远程资源(index是json索引,urls是实际访问路径)
@@ -101,6 +101,8 @@ const video_urls: Ref<any> = ref({})
 provide("video_urls", video_urls)
 const tag_index = ref("")
 provide("tag_index", tag_index)
+const update_index = ref("")
+provide("update_index", update_index)
 
 const get_list = async (url_list: string, url_store: string, index_ref: Ref<string>, urls_ref: Ref<any> = ref({})) => {
   try {
@@ -124,17 +126,18 @@ onMounted(() => {
   get_list(url_image_list, url_image, image_index, image_urls)
   get_list(url_sticker_list, url_sticker, sticker_index, sticker_urls)
   get_list(url_video_list, url_video, video_index, video_urls)
-  // tag单独获取
-  const get_tag = async () => {
+  // tag和updatea单独获取
+  const get_index = async (url:string,save_ref:Ref<string>) => {
     try {
-      const response = await fetch(url_tag_list)
+      const response = await fetch(url)
       const data = await response.json()
-      tag_index.value = data
+      save_ref.value = data
     } catch (error) {
       console.error(error)
     }
   }
-  get_tag()
+  get_index(url_tag_list,tag_index)
+  get_index(url_update_list,update_index)
 })
 
 // test按钮
@@ -154,7 +157,7 @@ div.bg-box {
   height: 100%;
   width: 100%;
   white-space: nowrap;
-  
+
 
   div.bg-one {
     position: relative;
@@ -182,7 +185,8 @@ div.home {
 div.body-navi {
   height: auto;
 }
-div.body-navi:hover ~ div.body-center{
+
+div.body-navi:hover~div.body-center {
   margin-left: 400px;
 }
 
@@ -225,7 +229,8 @@ div.body-center {
 .pointer {
   cursor: pointer;
 }
-body{
+
+body {
   overflow: hidden;
 }
 </style>

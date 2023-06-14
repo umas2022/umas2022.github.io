@@ -131,8 +131,7 @@
                     <div class="navi-each">visit: <a href="https://github.com/umas2022/umas2022.github.io">GitHub</a>
                     </div>
                     <div class="navi-each"> update: <br>
-                        update_list_json还没更新！
-                        <!-- <li v-for="(item,index) in update_list_json" :key="index"> {{item}}</li> <br> -->
+                        <li v-for="(item,index) in update_index" :key="index"> {{item}}</li> <br>
                     </div>
                 </div>
             </el-scrollbar>
@@ -153,6 +152,7 @@ import {pack_name} from "@/utils/tools.js"
 const image_urls:Ref<any> = inject("image_urls")!
 const sticker_urls:Ref<any> = inject("sticker_urls")!
 const video_urls:Ref<any> = inject("video_urls")!
+const update_index:Ref<any> = inject("update_index")!
 
 const img_total = computed(()=> Object.keys(image_urls.value).length) 
 const stk_total = computed(()=> Object.keys(sticker_urls.value).length) 
