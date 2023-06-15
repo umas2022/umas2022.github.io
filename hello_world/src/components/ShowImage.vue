@@ -121,7 +121,7 @@ const handle_tag_del = (tag: string) => {
 
     let path_old = props.path
     let path_new = path_old.replace(name_old, name_new)
-    store.state.edit_list[path_old] = path_new
+    store.state.edit_list.push({ path_old: path_old, path_new: path_new })
 }
 
 
@@ -156,7 +156,7 @@ const handle_tag_add = () => {
 
     let path_old = props.path
     let path_new = path_old.replace(name_old, name_new)
-    store.state.edit_list[path_old] = path_new
+    store.state.edit_list.push({ path_old: path_old, path_new: path_new })
 }
 
 

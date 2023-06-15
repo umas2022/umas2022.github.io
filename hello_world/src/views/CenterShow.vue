@@ -60,15 +60,6 @@ const props = defineProps<{
 
 
 
-
-
-
-
-
-
-
-
-
 // 图片组格式化生成函数
 const set_show_list = (group: string, num: number, title: string) => {
     const show_list = {
