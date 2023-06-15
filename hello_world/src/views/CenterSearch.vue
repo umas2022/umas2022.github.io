@@ -20,8 +20,9 @@
                     <my-tag type="danger" v-if="bootmark_reverse[tag]">{{ bootmark_reverse[tag] }}</my-tag>
                     <my-tag v-else @click="search_input = tag">{{ tag }}</my-tag>
                 </div> -->
-                <div class="tag-each shake-horizontal" v-for="(tag, index) in tag_index" :key="index">
-                    <my-tag @click="search_input = tag">{{ tag }}</my-tag>
+                <div class="tag-each shake-little" v-for="(tag, index) in tag_index" :key="index">
+                    <my-tag v-if="tag_sep.includes(tag)" type="danger" :hover="true">{{ tag }}</my-tag>
+                    <my-tag v-else @click="search_input = tag " :hover="true">{{ tag }}</my-tag>
                 </div>
             </div>
 
@@ -36,9 +37,10 @@
     </div>
 </template>
 <script lang="ts" setup>
-import { onMounted, ref, inject, computed,watch } from "vue"
+import { onMounted, ref, inject, computed, watch } from "vue"
 import type { Ref } from "vue"
 
+import { tag_sep } from "@/utils/const.js"
 import MyTag from "@/components/MyTag.vue"
 
 
@@ -104,6 +106,9 @@ const test_button = () => {
 </script>
 
 <style lang="scss" scoped>
+my-tag{
+    cursor: pointer;
+}
 div.search-box {
     display: flex;
     justify-content: center;

@@ -45,7 +45,7 @@
       </el-scrollbar>
 
       <!-- 右侧tag显示 -->
-      <el-scrollbar class="body-tag" v-else-if="store.state.setval.right_navi" :style="{ width: width_tag }">
+      <el-scrollbar class="body-tag" v-if="store.state.setval.right_navi" :style="{ width: width_tag }">
         <RightEdit />
       </el-scrollbar>
 

@@ -8,6 +8,8 @@ export default createStore({
     center_page: "search",
     // 右侧tag导航赋值
     tag_navi: "",
+    // 编辑tag记录
+    edit_list:[],
     // 参数设置
     setval: {
       // 图片宽度%
@@ -16,6 +18,7 @@ export default createStore({
       show_tag: true,
       // 编辑tag
       edit_tag: false,
+      // edit_tag: true,
       // 右侧tag栏
       right_navi: false,
       // 开发模式

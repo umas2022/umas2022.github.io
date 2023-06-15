@@ -1,4 +1,5 @@
 <template>
+    <!-- 霓虹灯边框效果 -->
     <div class="neon-box">
         <div class="sign">
             <span v-if="props.color==undefined" class="sign__word_blue"><slot></slot></span>

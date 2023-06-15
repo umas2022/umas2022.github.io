@@ -1,4 +1,5 @@
 <template>
+    <!-- 加载页 -->
     <div class="loading">
         <h1>loading ... (还没做)</h1>
     </div>

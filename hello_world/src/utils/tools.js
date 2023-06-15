@@ -66,7 +66,6 @@ export function get_tag_list(name) {
  */
 export function url_type(url){
     const extension = url.split('.').pop()
-    console.log(extension)
     if (legal_image.includes(extension)){
         return "image"
     } else if(legal_video.includes(extension)){

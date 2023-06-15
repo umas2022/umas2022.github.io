@@ -1,4 +1,5 @@
 <template>
+    <!-- 夜间模式开发页 -->
     <div class="dev-box">
         <NeonLight>Karaoke</NeonLight>
         <NeonLight color="blue">BAR</NeonLight>

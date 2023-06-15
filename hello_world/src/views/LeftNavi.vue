@@ -100,7 +100,7 @@
                     </div>
                     <div class="navi-each">
                         编辑tag <br>
-                        <el-switch v-model="store.state.setval.edit_tag" style="margin-left: 70px;"> </el-switch> <br>
+                        <el-switch v-model="store.state.setval.edit_tag" @click="store.state.setval.right_navi=store.state.setval.edit_tag" style="margin-left: 70px;"> </el-switch> <br>
                     </div>
                     <div class="navi-each">
                         右侧tag栏 <br>
@@ -190,8 +190,6 @@ const set_show_list=(group:string, num:number,title:string)=>{
 
 // 切换图片组
 const change_img_group = (group: string, num: number) => {
-    console.log(group)
-    console.log(num)
     if (group == "image") {
         store.commit("set_list", set_show_list(group, img_total.value + 1 - num,"第"+JSON.stringify(img_total.value + 1 - num) +"期"))
     } else if (group == "sticker") {
@@ -200,7 +198,6 @@ const change_img_group = (group: string, num: number) => {
         store.commit("set_list", set_show_list(group, vid_total.value + 1 - num,"第"+JSON.stringify(vid_total.value + 1 - num) +"期"))
     }
     store.commit("set_page", "show")
-    console.log(store.state.show_list)
 }
 
 // 设置参数
