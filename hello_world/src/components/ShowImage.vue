@@ -176,6 +176,9 @@ div.cp-image {
     img {
         width: 100%;
     }
+    video{
+        width: 100%;
+    }
 }
 
 div.tag-box {
