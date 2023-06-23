@@ -36,12 +36,16 @@
 
       <!-- 中间首页搜索 -->
       <el-scrollbar class="body-search" v-else-if="store.state.center_page == 'search'">
-        <CenterSearch />
+        <keep-alive>
+          <CenterSearch />
+        </keep-alive>
       </el-scrollbar>
 
       <!-- 中间图片显示 -->
       <el-scrollbar class="body-main" v-else-if="store.state.center_page == 'show'" :style="{ width: width_show }">
+        <keep-alive>
         <CenterShow :show_list="store.state.show_list" />
+      </keep-alive>
       </el-scrollbar>
 
       <!-- 右侧tag显示 -->
@@ -127,7 +131,7 @@ onMounted(() => {
   get_list(url_sticker_list, url_sticker, sticker_index, sticker_urls)
   get_list(url_video_list, url_video, video_index, video_urls)
   // tag和updatea单独获取
-  const get_index = async (url:string,save_ref:Ref<string>) => {
+  const get_index = async (url: string, save_ref: Ref<string>) => {
     try {
       const response = await fetch(url)
       const data = await response.json()
@@ -136,8 +140,8 @@ onMounted(() => {
       console.error(error)
     }
   }
-  get_index(url_tag_list,tag_index)
-  get_index(url_update_list,update_index)
+  get_index(url_tag_list, tag_index)
+  get_index(url_update_list, update_index)
 })
 
 // test按钮

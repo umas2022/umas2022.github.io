@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-button type="danger" @click=test_button> test</el-button>
+        <!-- <el-button type="danger" @click=test_button> test</el-button> -->
 
 
     
