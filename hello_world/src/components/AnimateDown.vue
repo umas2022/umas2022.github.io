@@ -20,7 +20,6 @@ const ani_ref = ref<HTMLDivElement>()
 
 // 初始状态
 onMounted(() => {
-    console.log(props.display)
     if (!props.display) {
         ani_ref.value!.classList.add("close")
     }

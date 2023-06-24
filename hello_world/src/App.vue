@@ -1,8 +1,8 @@
 <template>
 <div>
-    <HomeView />
+    <router-view />
 </div>
 </template>
 <script setup lang="ts">
-import HomeView from './views/HomeView.vue';
+import HomeIndex from './views/HomeIndex.vue';
 </script>
