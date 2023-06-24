@@ -6,7 +6,7 @@
         <div class="img-title">{{ props.title }} </div>
 
         <!-- 编辑tag模式下显示tooltip -->
-        <el-tooltip v-if="store.state.setval.show_tag" effect="dark" :content="edit_mode ? '点击锁定tag修改' : '点击激活tag修改'"
+        <el-tooltip v-if="store.state.setval.edit_tag" effect="dark" :content="edit_mode ? '点击锁定tag修改' : '点击激活tag修改'"
             placement="top-start">
             <video style="cursor: pointer;" @click="edit_mode = !edit_mode" v-if="url_type(props.path) == 'video'" controls>
                 <source :src="props.path" type="video/mp4">

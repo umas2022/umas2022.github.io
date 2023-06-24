@@ -1,44 +1,45 @@
 <template>
     <div>
-        <!-- <el-button type="danger" @click=test_button> test</el-button> -->
+        <!-- <el-button type="danger" @click="display_center = true"> test1</el-button> -->
 
+        <AnimateDown :display="display_center" :direction="direction_center">
+            <template #content>
 
-    
+                <!-- 标题 -->
+                <h1 style="text-align: center;">{{ props.show_list.title }}</h1>
+                <!-- 图片显示 -->
+                <div class="img-each" v-for="(img_name, index) in props.show_list.list" :key="index"
+                    :style="{ width: store.state.setval.pic_width + '%' }">
 
+                    <ShowImage
+                        :title="'No.' + index + 1 + '(' + props.show_list.path[index].split('/')[props.show_list.path[index].split('/').length - 2] + '/' + props.show_list.path[index].split('/')[props.show_list.path[index].split('/').length - 1] + ')'"
+                        :path="props.show_list.path[index]">
+                    </ShowImage>
 
-        <h1 style="text-align: center;">{{ props.show_list.title }}</h1>
-        <!-- 图片显示 -->
-        <div class="img-each" v-for="(img_name, index) in props.show_list.list" :key="index"
-            :style="{ width: store.state.setval.pic_width + '%' }">
+                </div>
 
-            <ShowImage
-                :title="'No.' + index + 1 + '(' + props.show_list.path[index].split('/')[props.show_list.path[index].split('/').length - 2] + '/' + props.show_list.path[index].split('/')[props.show_list.path[index].split('/').length - 1] + ')'"
-                :path="props.show_list.path[index]">
-            </ShowImage>
+                <!-- 上一页/下一页 -->
+                <div class="rear-box">
+                    <h3 style="text-align: center;">{{ props.show_list.title }} end</h3>
+                    <el-button @click=page_pre>上一页</el-button>
+                    <el-button @click=page_next>下一页</el-button>
+                </div>
 
-        </div>
+            </template>
+        </AnimateDown>
 
-        <!-- 上一页/下一页 -->
-        <div class="rear-box">
-            <el-button @click=page_pre>上一页</el-button>
-            <el-button @click=page_next>下一页</el-button>
-        </div>
 
     </div>
 </template>
 <script lang="ts" setup>
-import { defineProps, ref, watch, computed, inject, nextTick } from "vue";
+import { defineProps, ref, watch, computed, inject, onMounted, onBeforeUnmount } from "vue";
 import type { Ref } from "vue"
 import { useStore } from "vuex";
 const store = useStore();
 import { ElMessage } from 'element-plus'
-// import { ElInput } from 'element-plus'
-
-import MyTag from "@/components/MyTag.vue"
-import ButtonCross from "@/components/ButtonCross.vue"
+import AnimateDown from "@/components/AnimateDown.vue"
 import ShowImage from "@/components/ShowImage.vue"
 import { pack_name } from "@/utils/tools.js"
-import { get_tag_list } from "@/utils/tools.js"
 
 
 const image_urls: Ref<any> = inject("image_urls")!
@@ -58,6 +59,9 @@ const props = defineProps<{
     }
 }>();
 
+
+const display_center: Ref<boolean> = ref(true)
+const direction_center: Ref<"right" | "left"> = ref("right")
 
 
 // 图片组格式化生成函数
@@ -87,8 +91,18 @@ const page_pre = () => {
         ElMessage.success("到头啦!")
         return
     }
-    store.commit("set_list", set_show_list(group, pack_num - 1, "第" + JSON.stringify(pack_num - 1) + "期"))
+
+    direction_center.value = "right"
+    display_center.value = false
+    setTimeout(() => {
+        store.commit("set_list", set_show_list(group, pack_num - 1, "第" + JSON.stringify(pack_num - 1) + "期"))
+    }, 500);
+    setTimeout(() => {
+        direction_center.value = "right"
+        display_center.value = true
+    }, 700);
 }
+
 const page_next = () => {
     let group = props.show_list.path[0].split("/")[props.show_list.path[0].split("/").length - 3]
     let pack_name = props.show_list.path[0].split("/")[props.show_list.path[0].split("/").length - 2]
@@ -98,14 +112,43 @@ const page_next = () => {
         ElMessage.success("到头啦!")
         return
     }
-    store.commit("set_list", set_show_list(group, pack_num + 1, "第" + JSON.stringify(pack_num - 1) + "期"))
+
+    direction_center.value = "left"
+    display_center.value = false
+    setTimeout(() => {
+        store.commit("set_list", set_show_list(group, pack_num + 1, "第" + JSON.stringify(pack_num - 1) + "期"))
+    }, 500);
+    setTimeout(() => {
+        direction_center.value = "left"
+        display_center.value = true
+    }, 700);
 }
+
+
+// 键盘翻页
+const handleKeyDown = (event: KeyboardEvent) => {
+    if (event.key == "ArrowLeft") {
+        page_pre()
+    } else if (event.key == "ArrowRight") {
+        page_next()
+    }
+};
+
+onMounted(() => {
+    window.addEventListener('keydown', handleKeyDown);
+});
+
+onBeforeUnmount(() => {
+    window.removeEventListener('keydown', handleKeyDown);
+});
+
 
 
 // test按钮
 const test_button = () => {
     console.log("test")
-    console.log(store.state.edit_list)
+    display_center.value = !display_center.value
+    console.log(display_center.value)
 }
 
 </script>

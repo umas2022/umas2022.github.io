@@ -47,7 +47,10 @@ div.cp-tag {
     transition: 0.2s ease-in-out;
     display: flex;
     align-items: center;
+
+    cursor: pointer;
 }
+
 
 div.is_hover:hover {
     background-color: rgba(0, 132, 255, 0.3);

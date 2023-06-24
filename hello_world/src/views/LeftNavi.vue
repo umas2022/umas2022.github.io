@@ -122,11 +122,27 @@
         <!-- 左侧导航按钮:信息 -->
         <div class="info-box navi-box">
             <div class="info-icon navi-icon">
+                <img width="36" height="36" src="icon/magic.svg" alt="icon">
+            </div>
+            <el-scrollbar>
+                <div class="navi-body">
+                    <h3>使用tips</h3>
+                    <div class="navi-each"> 左右方向键可以控制翻页 </div>
+                    <div class="navi-each"> tag眼花缭乱怎么办？可以ctrl+F直接搜网页 </div>
+                    <div class="navi-each">  直接搜索空字符串会返回所有表情包（目前还不会卡死，所以先暂时不作为bug）</div>
+                    <div class="navi-each"> 和一些tips </div>
+                </div>
+            </el-scrollbar>
+        </div>
+
+        <!-- 左侧导航按钮:更新日历 -->
+        <div class="calen-box navi-box">
+            <div class="calen-icon navi-icon">
                 <img width="36" height="36" src="icon/info.svg" alt="icon">
             </div>
             <el-scrollbar>
                 <div class="navi-body">
-                    <h3>info</h3>
+                    <h3>更新记录</h3>
                     <div class="navi-each"> by:umas </div>
                     <div class="navi-each">visit: <a href="https://github.com/umas2022/umas2022.github.io">GitHub</a>
                     </div>
@@ -296,7 +312,7 @@ div.list-box{
     height: 40px;
 }
 div.list-box:hover{
-    height: calc(100vh - 350px);
+    height: calc(100vh - 400px);
 }
 div.list-icon {
     padding: 3px 0px 1px 4px;
@@ -306,10 +322,10 @@ div.list-icon {
 /* 表情包列表栏 */
 div.sticker-box{
     height: 40px;
-    max-height: calc(100vh - 350px);
+    max-height: calc(100vh - 400px);
 }
 div.sticker-box:hover{
-    height: calc(100vh - 250px);
+    height: calc(100vh - 300px);
 }
 div.sticker-icon {
     padding: 4px 1px 0px 3px;
@@ -318,10 +334,10 @@ div.sticker-icon {
 /* 视频列表栏 */
 div.video-box{
     height: 40px;
-    max-height: calc(100vh - 350px);
+    max-height: calc(100vh - 400px);
 }
 div.video-box:hover{
-    height: calc(100vh - 250px);
+    height: calc(100vh - 300px);
 }
 div.video-icon {
     padding: 4px 1px 0px 3px;
@@ -331,10 +347,10 @@ div.video-icon {
 /* 设置栏 */
 div.set-box{
     height: 40px;
-    max-height: calc(100vh - 350px);
+    max-height: calc(100vh - 400px);
 }
 div.set-box:hover{
-    height: calc(100vh - 250px);
+    height: calc(100vh - 300px);
 }
 div.set-icon {
     padding: 4px 0px 0px 4px;
@@ -343,12 +359,24 @@ div.set-icon {
 /* 信息栏 */
 div.info-box{
     height: 40px;
-    max-height: calc(100vh - 350px);
+    max-height: calc(100vh - 400px);
 }
 div.info-box:hover{
-    height: calc(100vh - 250px);
+    height: calc(100vh - 300px);
 }
 div.info-icon {
+    padding: 4px 0px 0px 4px;
+}
+
+/* 更新栏 */
+div.calen-box{
+    height: 40px;
+    max-height: calc(100vh - 400px);
+}
+div.calen-box:hover{
+    height: calc(100vh - 300px);
+}
+div.calen-icon {
     padding: 4px 0px 0px 4px;
 }
 </style>
