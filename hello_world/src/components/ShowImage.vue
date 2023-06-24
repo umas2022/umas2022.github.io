@@ -140,7 +140,8 @@ const handle_tag_add = () => {
     input_mode.value = false
 
     let name_old = img_name
-    let num = name_old.split("_")[0]
+    let num = name_old.split(".")[0].split("_")[0]
+    console.log(num)
     let suffix = name_old.split(".")[name_old.split(".").length - 1]
     let tag_list = get_tag_list_edit(name_old)
 
