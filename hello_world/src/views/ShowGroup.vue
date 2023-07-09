@@ -7,6 +7,13 @@
 
                 <!-- 标题 -->
                 <h1 style="text-align: center;">{{ store.state.show_list.title }}</h1>
+
+                <!-- 上一页/下一页 -->
+                <div class="rear-box">
+                    <el-button @click=page_pre>上一页</el-button>
+                    <el-button @click=page_next>下一页</el-button>
+                </div>
+
                 <!-- 图片显示 -->
                 <div class="img-each" v-for="(img_name, index) in store.state.show_list.list" :key="index"
                     :style="{ width: store.state.setval.pic_width + '%' }">
@@ -75,6 +82,7 @@ const set_show_list = (group: string, num: number, title: string) => {
 
 // 下一页/上一页
 const page_pre = () => {
+    button_key.value = true
     let group = store.state.show_list.path[0].split("/")[store.state.show_list.path[0].split("/").length - 3]
     let pack_name = store.state.show_list.path[0].split("/")[store.state.show_list.path[0].split("/").length - 2]
     let pack_num = parseInt(pack_name.replace("pack", ""))
@@ -91,10 +99,12 @@ const page_pre = () => {
     setTimeout(() => {
         direction_center.value = "right"
         display_center.value = true
+        button_key.value = false
     }, 700);
 }
 
 const page_next = () => {
+    button_key.value = true
     let group = store.state.show_list.path[0].split("/")[store.state.show_list.path[0].split("/").length - 3]
     let pack_name = store.state.show_list.path[0].split("/")[store.state.show_list.path[0].split("/").length - 2]
     let pack_num = parseInt(pack_name.replace("pack", ""))
@@ -112,8 +122,23 @@ const page_next = () => {
     setTimeout(() => {
         direction_center.value = "left"
         display_center.value = true
+        button_key.value = false
     }, 700);
 }
+
+// 在其他页面触发翻页
+const button_key = ref(false)
+watch(() => store.state.show_list.path, () => {
+    if (button_key.value) {
+        return
+    }
+    direction_center.value = "left"
+    display_center.value = false
+    setTimeout(() => {
+        direction_center.value = "left"
+        display_center.value = true
+    }, 500);
+})
 
 
 // 键盘翻页
@@ -175,6 +200,7 @@ div.img-each {
 // 下一页
 div.rear-box {
     margin: 0 auto;
-    text-align: center
+    text-align: center;
+    padding: 10px
 }
 </style>

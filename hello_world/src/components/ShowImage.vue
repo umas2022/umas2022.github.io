@@ -2,6 +2,9 @@
     <!-- 显示单张图片或单个视频 -->
 
     <div class="cp-image">
+
+        <!-- <el-button type="danger" @click="test_button"> test1</el-button> -->
+
         <!-- 标题 -->
         <div class="img-title">{{ props.title }} </div>
 
@@ -89,7 +92,7 @@ const props = defineProps<{
     title: string,
     path: string
 }>();
-const img_name = props.path.split('/')[props.path.split('/').length - 1]
+const img_name = computed(() => props.path.split('/')[props.path.split('/').length - 1])
 
 // 启用编辑模式
 const edit_mode = ref(false)
@@ -110,7 +113,7 @@ const get_tag_list_edit = (name: string) => {
 // 函数：删除tag
 const handle_tag_del = (tag: string) => {
 
-    let name_old = img_name
+    let name_old = img_name.value
     let num = name_old.split("_")[0]
     let suffix = name_old.split(".")[name_old.split(".").length - 1]
     let tag_list = get_tag_list_edit(name_old)
@@ -139,7 +142,7 @@ const tag_new = ref("")
 const handle_tag_add = () => {
     input_mode.value = false
 
-    let name_old = img_name
+    let name_old = img_name.value
     let num = name_old.split(".")[0].split("_")[0]
     console.log(num)
     let suffix = name_old.split(".")[name_old.split(".").length - 1]
@@ -166,6 +169,12 @@ watch(() => store.state.tag_navi, () => {
     tag_new.value = store.state.tag_navi
 })
 
+
+// 测试按钮
+const test_button = () => {
+    console.log(props.path)
+    console.log(img_name.value)
+}
 </script>
 
 
@@ -177,7 +186,8 @@ div.cp-image {
     img {
         width: 100%;
     }
-    video{
+
+    video {
         width: 100%;
     }
 }

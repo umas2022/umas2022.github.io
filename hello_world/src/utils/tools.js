@@ -20,6 +20,7 @@ export function pack_name(num) {
     return "pack" + num_fill
 }
 
+
 /**
  * 图片名拆分tag
  * @param {string} name 
@@ -36,28 +37,6 @@ export function get_tag_list(name) {
 
 
 
-
-/**
- * 生成tag列表,用于el-autocomplete
- * @returns 
- */
-// export function build_suggestions() {
-//     let sug_list = []
-//     for (let index in tag_list) {
-//         sug_list.push({ value: tag_list[index] })
-//     }
-//     return sug_list
-// }
-
-/**
- * 生成tag列表,带字母分隔,用于显示
- * @returns 
- */
-// export function tag_list_bookmark() {
-//     const new_list = [...tag_list, ...bookmark_list]
-//     const collator = new Intl.Collator('zh', { sensitivity: 'base' });
-//     return new_list.sort(collator.compare)
-// }
 
 
 /**

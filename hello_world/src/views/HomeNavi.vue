@@ -258,8 +258,10 @@ div.navi-box {
     margin: 3px;
 }
 
+
+// 左侧导航展开宽度，另外需要改变HomeIndex.vue, div.body-navi:hover~div.body-center 
 div.navi-box:hover {
-    width: 350px;
+    width: 400px;
     border: solid 2px rgba(0, 0, 0, 0.7);
     background-color: rgba(255, 255, 255, 0.3);
 }

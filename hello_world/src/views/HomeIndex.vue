@@ -169,6 +169,7 @@ div.body-navi {
   height: auto;
 }
 
+// 左侧导航展开宽度，另外需要改变HomeNavi.vue, div.navi-box:hover
 div.body-navi:hover~div.body-center {
   margin-left: 400px;
 }
