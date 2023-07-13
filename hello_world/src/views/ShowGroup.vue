@@ -82,7 +82,6 @@ const set_show_list = (group: string, num: number, title: string) => {
 
 // 下一页/上一页
 const page_pre = () => {
-    button_key.value = true
     let group = store.state.show_list.path[0].split("/")[store.state.show_list.path[0].split("/").length - 3]
     let pack_name = store.state.show_list.path[0].split("/")[store.state.show_list.path[0].split("/").length - 2]
     let pack_num = parseInt(pack_name.replace("pack", ""))
@@ -99,12 +98,10 @@ const page_pre = () => {
     setTimeout(() => {
         direction_center.value = "right"
         display_center.value = true
-        button_key.value = false
     }, 700);
 }
 
 const page_next = () => {
-    button_key.value = true
     let group = store.state.show_list.path[0].split("/")[store.state.show_list.path[0].split("/").length - 3]
     let pack_name = store.state.show_list.path[0].split("/")[store.state.show_list.path[0].split("/").length - 2]
     let pack_num = parseInt(pack_name.replace("pack", ""))
@@ -122,23 +119,10 @@ const page_next = () => {
     setTimeout(() => {
         direction_center.value = "left"
         display_center.value = true
-        button_key.value = false
     }, 700);
 }
 
-// 在其他页面触发翻页
-const button_key = ref(false)
-watch(() => store.state.show_list.path, () => {
-    if (button_key.value) {
-        return
-    }
-    direction_center.value = "left"
-    display_center.value = false
-    setTimeout(() => {
-        direction_center.value = "left"
-        display_center.value = true
-    }, 500);
-})
+
 
 
 // 键盘翻页

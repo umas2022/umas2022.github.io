@@ -26,6 +26,7 @@ const routes: Array<RouteRecordRaw> = [
 
 const router = createRouter({
   // history: createWebHistory(process.env.BASE_URL),
+  // hash路由，解决show页刷新404
   history: createWebHashHistory(process.env.BASE_URL),
   routes
 })
