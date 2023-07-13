@@ -1,7 +1,7 @@
 # 打包并上传项目
 
 
-commit_txt = "hash router"
+commit_txt = "fix"
 
 
 import os

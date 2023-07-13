@@ -13,7 +13,7 @@
                 <div id="go" v-if="res_list.length == 1">
                     <el-button class="shake-little" type="warning" @click="go_image">看图</el-button>
                     <el-button class="shake-little" type="warning" @click="go_video">视频</el-button>
-                    <el-button class="shake-little" type="warning" @click="go_sticker">表情包</el-button>
+                    <el-button class="shake-little" type="warning" @click="go_sticker">表情</el-button>
                 </div>
                 <div id="search" :class="res_list.length == 1 ? 'search-input' : 'search-res'">
                     <el-input placeholder="搜tag" v-model="search_input"></el-input>
