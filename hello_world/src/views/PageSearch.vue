@@ -31,7 +31,7 @@
 
 
             <div class="res-box" v-if="res_list.length > 1">
-                <ShowGroup/>
+                <PageShow/>
             </div>
         </div>
 
@@ -57,7 +57,7 @@ const stk_total = computed(() => Object.keys(sticker_urls.value).length)
 import { useStore } from "vuex";
 const store = useStore();
 
-import ShowGroup from "./ShowGroup.vue"
+import PageShow from "./PageShow.vue"
 import { ElMessage } from "element-plus"
 
 

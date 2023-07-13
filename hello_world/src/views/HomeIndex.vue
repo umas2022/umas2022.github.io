@@ -20,7 +20,7 @@
 
       <!-- 中间loading页,初始化loading -->
       <div class="body-loading" v-if="image_index == '' || sticker_index == '' || video_index == ''">
-        <LoadingPage />
+        <PageLoading />
       </div>
 
       <el-scrollbar v-else :native="true" class="body-search">
@@ -42,7 +42,7 @@ import { ref, watch, onMounted, provide } from "vue";
 import type { Ref } from "vue"
 import HomeNavi from "./HomeNavi.vue"
 import HomeTagBox from "./HomeTagBox.vue"
-import LoadingPage from "./LoadingPage.vue"
+import PageLoading from "./PageLoading.vue"
 
 
 import { useStore } from "vuex";

@@ -9,17 +9,17 @@ const routes: Array<RouteRecordRaw> = [
     children: [{
       path: "/loading",
       name: "loading",
-      component: () => import("../views/LoadingPage.vue")
+      component: () => import("../views/PageLoading.vue")
     },{
       path: "",
       alias: "/search",
       name: "search",
-      component: () => import("../views/SearchTag.vue")
+      component: () => import("../views/PageSearch.vue")
     },
     {
       path: '/show',
       name: 'show',
-      component: () => import("../views/ShowGroup.vue")
+      component: () => import("../views/PageShow.vue")
     }]
   }
 ]
