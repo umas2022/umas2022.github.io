@@ -9,7 +9,7 @@
                 <h1 style="text-align: center;">{{ store.state.show_list.title }}</h1>
 
                 <!-- 上一页/下一页 -->
-                <div class="rear-box">
+                <div class="rear-box" v-show="!props.hide_button">
                     <el-button @click=page_pre>上一页</el-button>
                     <el-button @click=page_next>下一页</el-button>
                 </div>
@@ -26,7 +26,7 @@
                 </div>
 
                 <!-- 上一页/下一页 -->
-                <div class="rear-box">
+                <div class="rear-box" v-show="!props.hide_button">
                     <h3 style="text-align: center;">{{ store.state.show_list.title }} end</h3>
                     <el-button @click=page_pre>上一页</el-button>
                     <el-button @click=page_next>下一页</el-button>
@@ -61,6 +61,15 @@ const vid_total = computed(() => Object.keys(video_urls.value).length)
 const display_center: Ref<boolean> = ref(true)
 const direction_center: Ref<"right" | "left"> = ref("right")
 
+
+// 父组件传参
+const props = defineProps({
+  hide_button: {
+    type: Boolean,
+    default: false, // 设置默认值为 false
+    required: false, // 将属性设置为可选属性
+  },
+});
 
 // 图片组格式化生成函数
 const set_show_list = (group: string, num: number, title: string) => {

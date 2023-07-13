@@ -32,7 +32,7 @@
 
 
             <div class="res-box" v-if="res_list.length > 1">
-                <PageShow />
+                <PageShow :hide_button="true"/>
             </div>
         </div>
 
@@ -228,7 +228,7 @@ div.search-box .input-box {
         border: solid 3px black;
         border-radius: 5px;
         padding: 5px;
-        width: 280px;
+        width: 255px;
         display: inline-block;
     }
 }
