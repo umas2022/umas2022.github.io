@@ -30,7 +30,6 @@
                 </div>
             </div>
 
-
             <div class="res-box" v-if="res_list.length > 1">
                 <PageShow :hide_button="true"/>
             </div>
