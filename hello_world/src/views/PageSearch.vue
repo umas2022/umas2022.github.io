@@ -12,6 +12,7 @@
             <div class="input-box">
                 <div id="go" v-if="res_list.length == 1">
                     <el-button class="shake-little" type="warning" @click="go_image">看图</el-button>
+                    <el-button class="shake-little" type="warning" @click="go_video">视频</el-button>
                     <el-button class="shake-little" type="warning" @click="go_sticker">表情包</el-button>
                 </div>
                 <div id="search" :class="res_list.length == 1 ? 'search-input' : 'search-res'">
@@ -31,7 +32,7 @@
 
 
             <div class="res-box" v-if="res_list.length > 1">
-                <PageShow/>
+                <PageShow />
             </div>
         </div>
 
@@ -53,10 +54,15 @@ const video_urls: Ref<any> = inject("video_urls")!
 const tag_index: Ref<any> = inject("tag_index")!
 const img_total = computed(() => Object.keys(image_urls.value).length)
 const stk_total = computed(() => Object.keys(sticker_urls.value).length)
+const vid_total = computed(() => Object.keys(video_urls.value).length)
+
+import { useRouter } from "vue-router";
+const router = useRouter();
 
 import { useStore } from "vuex";
 const store = useStore();
 
+import { pack_name } from "@/utils/tools.js"
 import PageShow from "./PageShow.vue"
 import { ElMessage } from "element-plus"
 
@@ -100,17 +106,51 @@ const search_tag = () => {
         }
     }
     console.log(res_list.value)
-    store.commit("set_list",res_list.value[res_list.value.length - 1])
+    store.commit("set_list", res_list.value[res_list.value.length - 1])
 }
 
 
-// 看图
-const go_image = ()=>{
-    ElMessage.error("这个按钮还没做")
+// 看最新图
+const go_image = () => {
+    const show_list = {
+        title: "第" + JSON.stringify(img_total.value) + "期",
+        list: [],
+        path: []
+    }
+    show_list.list = image_urls.value[pack_name(img_total.value)]
+    show_list.path = show_list.list
+
+    store.commit("set_list", show_list)
+    router.push("show")
 }
-const go_sticker = ()=>{
-    ElMessage.error("这个按钮还没做")
+
+const go_video = () => {
+    const show_list = {
+        title: "第" + JSON.stringify(vid_total.value) + "期",
+        list: [],
+        path: []
+    }
+    show_list.list = video_urls.value[pack_name(vid_total.value)]
+    show_list.path = show_list.list
+
+    store.commit("set_list", show_list)
+    router.push("show")
 }
+
+const go_sticker = () => {
+    const show_list = {
+        title: "第" + JSON.stringify(stk_total.value) + "期",
+        list: [],
+        path: []
+    }
+    show_list.list = sticker_urls.value[pack_name(stk_total.value)]
+    show_list.path = show_list.list
+
+    store.commit("set_list", show_list)
+    router.push("show")
+}
+
+
 
 // test按钮
 const test_button = () => {
@@ -165,11 +205,12 @@ div.search-box .input-box {
         margin-right: 10px;
 
 
-        
+
     }
 
     .search-input {
         width: calc(100% - 190px);
+
         .el-input {
             width: calc(100% - 60px);
         }
@@ -177,6 +218,7 @@ div.search-box .input-box {
 
     .search-res {
         width: 100%;
+
         .el-input {
             width: calc(100% - 135px);
         }
@@ -186,17 +228,10 @@ div.search-box .input-box {
         border: solid 3px black;
         border-radius: 5px;
         padding: 5px;
-        width: 147px;
+        width: 280px;
         display: inline-block;
     }
 }
-
-// div.go-box{
-//     display: flex;
-//     position: relative;
-//     justify-content: center;
-//     align-items: center;
-// }
 
 
 /* 自定义搜索框 */
@@ -219,4 +254,5 @@ div.tag-each {
 
 div.tag-each .el-tag {
     cursor: pointer;
-}</style>
+}
+</style>

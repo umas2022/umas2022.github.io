@@ -218,7 +218,6 @@ const change_img_group = (group: string, num: number) => {
     } else if (group == "video") {
         store.commit("set_list", set_show_list(group, vid_total.value + 1 - num, "第" + JSON.stringify(vid_total.value + 1 - num) + "期"))
     }
-    // store.commit("set_page", "show")
     router.push("show")
 }
 
