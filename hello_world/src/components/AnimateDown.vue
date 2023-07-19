@@ -1,4 +1,5 @@
 <template>
+    <!-- 左右切换动画 -->
     <div class="cp-animate  animate__animated animate__bounceInLeft" ref="ani_ref">
         <slot name="content"></slot>
     </div>

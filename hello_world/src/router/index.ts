@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory,createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import { createRouter, createWebHistory, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 import HomeIndex from "../views/HomeIndex.vue"
 
 const routes: Array<RouteRecordRaw> = [
@@ -10,7 +10,8 @@ const routes: Array<RouteRecordRaw> = [
       path: "/loading",
       name: "loading",
       component: () => import("../views/PageLoading.vue")
-    },{
+    }, 
+    {
       path: "",
       alias: "/search",
       name: "search",
@@ -20,7 +21,13 @@ const routes: Array<RouteRecordRaw> = [
       path: '/show',
       name: 'show',
       component: () => import("../views/PageShow.vue")
-    }]
+    }    ,
+    {
+      path: '/dev',
+      name: 'dev',
+      component: () => import("../views/PageDev.vue")
+    }
+  ]
   }
 ]
 

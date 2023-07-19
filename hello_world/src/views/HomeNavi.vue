@@ -115,7 +115,7 @@
                     </div>
                     <div class="navi-each">
                         夜间模式 <br>
-                        (绝赞开发中)
+                        (开发中)
                     </div>
                 </div>
             </el-scrollbar>
@@ -126,14 +126,17 @@
             <div class="info-icon navi-icon">
                 <img width="36" height="36" src="icon/magic.svg" alt="icon">
             </div>
-            <el-scrollbar>
+            <el-scrollbar style="height: calc(100% - 50px)">
                 <div class="navi-body">
-                    <h3>使用tips</h3>
-                    <div class="navi-each"> 左右方向键可以控制翻页 </div>
-                    <div class="navi-each"> tag眼花缭乱怎么办？可以ctrl+F直接搜网页 </div>
-                    <div class="navi-each"> 直接搜索空字符串会返回所有表情包（目前还不会卡死，所以先暂时不作为bug）</div>
-                    <div class="navi-each"> （没有做竖屏适配） </div>
-                    <div class="navi-each"> 和一些tips </div>
+                    <h3>About</h3>
+                    <div class="navi-each"> by:umas </div>
+                    <div class="navi-each">visit: <a href="https://github.com/umas2022/umas2022.github.io">GitHub</a>
+                    </div>
+                    <div class="navi-each"> <li>左右方向键可以控制翻页</li>  </div>
+                    <div class="navi-each"> <li>找不到tag？可以ctrl+F直接搜网页</li>  </div>
+                    <div class="navi-each"> <li>直接搜索空字符串会返回所有表情包</li> </div>
+                    <div class="navi-each"> <li>支持在结果中继续搜索</li> </div>
+                    <div class="navi-each"> <li>（没有做竖屏适配）</li> </div>
                 </div>
             </el-scrollbar>
         </div>
@@ -143,14 +146,12 @@
             <div class="calen-icon navi-icon">
                 <img width="36" height="36" src="icon/info.svg" alt="icon">
             </div>
-            <el-scrollbar>
+            <el-scrollbar style="height: calc(100% - 50px)">
                 <div class="navi-body">
                     <h3>更新记录</h3>
-                    <div class="navi-each"> by:umas </div>
-                    <div class="navi-each">visit: <a href="https://github.com/umas2022/umas2022.github.io">GitHub</a>
-                    </div>
-                    <div class="navi-each"> update: <br>
-                        <li v-for="(item, index) in update_index" :key="index"> {{ item }}</li> <br>
+
+                    <div class="navi-each" v-for="(item, index) in update_index" :key="index">
+                        <li> {{ item }}</li>
                     </div>
                 </div>
             </el-scrollbar>
@@ -186,7 +187,7 @@ const go_home = () => {
 
 // 去开发页
 const go_dev = () => {
-    // store.commit('set_page', 'dev')
+    router.push("dev")
 }
 
 // 图片组格式化生成函数
@@ -399,4 +400,5 @@ div.calen-box:hover {
 
 div.calen-icon {
     padding: 4px 0px 0px 4px;
-}</style>
+}
+</style>

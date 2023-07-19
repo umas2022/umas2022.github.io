@@ -5,7 +5,6 @@
 
             <!-- <el-button type="danger" @click=test_button> test</el-button> -->
 
-
             <div class="img-box " v-if="res_list.length == 1">
                 <img class="shake-crazy" style="width: 30%;" src="static/home.jpg" alt="">
             </div>
@@ -18,7 +17,7 @@
                 <div id="search" :class="res_list.length == 1 ? 'search-input' : 'search-res'">
                     <el-input placeholder="搜tag" v-model="search_input"></el-input>
                     <el-button class="shake-little" type="primary" @click="search_tag">搜索</el-button>
-                    <el-button @click="res_list.pop()" v-if="res_list.length > 1">返回</el-button>
+                    <el-button @click="search_back" v-if="res_list.length > 1">返回</el-button>
                 </div>
 
             </div>
@@ -30,6 +29,7 @@
                 </div>
             </div>
 
+            <!-- 显示搜索结果 -->
             <div class="res-box" v-if="res_list.length > 1">
                 <PageShow :hide_button="true"/>
             </div>
@@ -92,7 +92,8 @@ onMounted(() => {
     }
 })
 
-// 搜索tag
+
+// 点击搜索按钮，搜索tag
 const search_tag = () => {
 
     res_list.value.push({ title: "搜索结果", list: [], path: [] })
@@ -105,6 +106,13 @@ const search_tag = () => {
         }
     }
     console.log(res_list.value)
+    store.commit("set_list", res_list.value[res_list.value.length - 1])
+}
+
+
+// 搜索结果回退
+const search_back=()=>{
+    res_list.value.pop()
     store.commit("set_list", res_list.value[res_list.value.length - 1])
 }
 
