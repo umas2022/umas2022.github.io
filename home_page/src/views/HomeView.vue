@@ -40,8 +40,8 @@ const navi_index = reactive({
   "backyard": {
     icon: "backyard.png",
     title: "弔图主页(迁移中)",
-    link_code: "",
-    link_page: "",
+    link_code: "https://github.com/umas2022/backyard",
+    link_page: "https://umas2022.github.io/backyard",
     link_mirror: ""
   },
   "blog": {
