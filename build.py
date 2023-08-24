@@ -12,7 +12,7 @@ sys.path.append(script_path)
 
 
 print("\n===== npm build =====\n")
-subprocess.run(["npm", "run", "build"], cwd="./hello_world", shell=True)
+subprocess.run(["npm", "run", "build"], cwd="./home_page", shell=True)
 
 
 

@@ -2,5 +2,5 @@
 
 import os
 
-os.chdir("hello_world")
+os.chdir("home_page")
 os.system("npm run serve")
