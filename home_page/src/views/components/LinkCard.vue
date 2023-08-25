@@ -1,8 +1,8 @@
 <template>
-    <div class="link-card" @click="goto(link_json.link_page)">
+    <div class="link-card">
 
-        <div class="title-box">
-            <img v-if="link_json.icon==''" :src="'icon/null.svg' + link_json.icon" alt="">
+        <div class="title-box" @click="goto(link_json.link_page)">
+            <img v-if="link_json.icon == ''" :src="'icon/null.svg' + link_json.icon" alt="">
             <img v-else :src="'icon/' + link_json.icon" alt="">
             <h3>{{ link_json.title }}</h3>
         </div>
@@ -56,7 +56,6 @@ div.link-card {
     display: flex;
     align-items: center;
 
-    cursor: pointer;
 
 }
 
@@ -76,6 +75,7 @@ div.title-box {
     width: 50%;
     display: flex;
     align-items: center;
+    cursor: pointer;
 
     h3 {
         display: inline-block;
@@ -95,13 +95,14 @@ div.btn-box {
     padding-right: 20px;
 
 
+
     display: flex;
     align-items: center;
     justify-content: flex-end;
 
     // 分割线
 
-    .divider{
+    .divider {
         height: 60%;
         border-left: 2px solid rgba(0, 0, 0, 0.2);
 
@@ -124,6 +125,7 @@ div.btn-box {
         border-radius: 10px;
         background-color: rgba(0, 0, 0, 0.1);
     }
+
 
 }
 </style>

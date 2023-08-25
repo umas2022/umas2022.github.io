@@ -21,9 +21,11 @@
     <!-- 右边链接 -->
     <div class="home-right">
       <div class="link-box">
-        <div class="card-each" style="display: none;" v-for="(item, index) in navi_index" :key="index">
-          <LinkCard  :link_json="item" />
-        </div>
+        <el-scrollbar>
+          <div class="card-each" style="display: none;" v-for="(item, index) in navi_index" :key="index">
+            <LinkCard :link_json="item" />
+          </div>
+        </el-scrollbar>
       </div>
     </div>
 
@@ -50,6 +52,13 @@ const navi_index = reactive({
     title: "个人博客",
     link_code: "https://github.com/umas2023/umas2023.github.io",
     link_page: "https://umas2023.github.io/",
+    link_mirror: ""
+  },
+  "easyp": {
+    icon: "easyp.jpg",
+    title: "约饭速P",
+    link_code: "https://github.com/umas2022/easyP",
+    link_page: "https://umas2022.github.io/easyP/",
     link_mirror: ""
   },
   "ubk": {
@@ -155,9 +164,9 @@ div.home {
 
     div.link-box {
       width: 100%;
-      height: auto;
+      height: 60%;
 
-      div.card-each{
+      div.card-each {
         width: 100%;
         height: 100%;
       }
