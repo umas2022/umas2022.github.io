@@ -22,6 +22,7 @@
 
 
 <script setup lang="ts" >
+import { onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 const router = useRouter();
 
@@ -40,6 +41,17 @@ const goto = (url: string) => {
     console.log(url)
     window.location.href = url
 }
+
+
+
+onMounted(() => {
+    if (window.innerWidth < 800) {
+        let link_card = window.document.querySelectorAll(".link-card");
+        link_card.forEach((linkCard) => {
+            (linkCard as HTMLElement).style.width = "100%";
+        });
+    }
+})
 
 
 </script>
