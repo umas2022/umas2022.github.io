@@ -62,10 +62,10 @@ const navi_index = reactive({
     link_mirror: ""
   },
   "ubk": {
-    icon: "",
+    icon: "ubk.png",
     title: "极简记账(迁移中)",
-    link_code: "",
-    link_page: "",
+    link_code: "https://github.com/umas2022/ubk_page",
+    link_page: "https://umas2022.github.io/ubk_page/",
     link_mirror: ""
   },
   "pctools": {
