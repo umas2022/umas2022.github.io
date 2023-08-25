@@ -1,17 +1,19 @@
 <template>
-    <div class="link-card">
+    <div class="link-card" @click="goto(link_json.link_page)">
 
         <div class="title-box">
-            <img style="height: 80%;" :src="'icon/' + link_json.icon" alt="">
+            <img v-if="link_json.icon==''" :src="'icon/null.svg' + link_json.icon" alt="">
+            <img v-else :src="'icon/' + link_json.icon" alt="">
             <h3>{{ link_json.title }}</h3>
         </div>
 
 
         <!-- 右侧按钮 -->
         <div class="btn-box">
-            <div class="button" v-if="link_json.link_code!=''" @click="goto(link_json.link_code)">code</div>
-            <div class="button" v-if="link_json.link_page!=''" @click="goto(link_json.link_page)">page</div>
-            <div class="button" v-if="link_json.link_mirror!=''" @click="goto(link_json.link_mirror)">mirror</div>
+            <div class="divider" v-if="link_json.link_code != ''"></div>
+            <div class="button" v-if="link_json.link_code != ''" @click="goto(link_json.link_code)">code</div>
+            <div class="divider" v-if="link_json.link_mirror != ''"></div>
+            <div class="button" v-if="link_json.link_mirror != ''" @click="goto(link_json.link_mirror)">mirror</div>
         </div>
 
     </div>
@@ -36,7 +38,7 @@ const props = defineProps<{
 
 const goto = (url: string) => {
     console.log(url)
-    window.location.href=url
+    window.location.href = url
 }
 
 
@@ -53,8 +55,22 @@ div.link-card {
 
     display: flex;
     align-items: center;
+
+    cursor: pointer;
+
 }
 
+.link-card:hover {
+    height: 70px;
+
+    background: #d7d7d7;
+    box-shadow: 23px 23px 57px #8b8b8b,
+        -23px -23px 57px #ffffff;
+}
+
+
+
+// 左侧icon和title
 div.title-box {
     height: 100%;
     width: 50%;
@@ -66,10 +82,13 @@ div.title-box {
     }
 
     img {
+        height: 70%;
+        padding-left: 10px;
         padding-right: 10px;
     }
 }
 
+// 右侧按钮
 div.btn-box {
     width: 50%;
     height: 100%;
@@ -80,24 +99,30 @@ div.btn-box {
     align-items: center;
     justify-content: flex-end;
 
+    // 分割线
+
+    .divider{
+        height: 60%;
+        border-left: 2px solid rgba(0, 0, 0, 0.2);
+
+    }
+
+
     .button {
         cursor: pointer;
-        background-color: rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
         margin: 5px;
-        height: 60%;
+        height: 80%;
         width: 80px;
         display: flex;
         align-items: center;
         text-align: center;
         justify-content: center;
 
-        transition: border 1s ease;
     }
 
     .button:hover {
-        border: 3px solid black;
-        /* 在 hover 时显示边框 */
+        border-radius: 10px;
+        background-color: rgba(0, 0, 0, 0.1);
     }
 
 }

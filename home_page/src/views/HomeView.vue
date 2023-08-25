@@ -14,16 +14,17 @@
     </div>
 
     <!-- 分割线 -->
-    <div class="divider">
+    <div class="divider animate__animated animate__fadeInDown">
       <div class="line"></div>
     </div>
 
     <!-- 右边链接 -->
-    <div class="home-right animate__animated animate__fadeInRight">
+    <div class="home-right">
       <div class="link-box">
-        <LinkCard v-for="(item, index) in navi_index" :key="index" :link_json="item"/>
+        <div class="card-each" style="display: none;" v-for="(item, index) in navi_index" :key="index">
+          <LinkCard  :link_json="item" />
+        </div>
       </div>
-      
     </div>
 
   </div>
@@ -32,14 +33,14 @@
 
 <script lang="ts" setup>
 
-import { reactive } from "vue";
+import { onMounted, reactive } from "vue";
 import LinkCard from "./components/LinkCard.vue"
 
 
 const navi_index = reactive({
   "backyard": {
     icon: "backyard.png",
-    title: "弔图主页(迁移中)",
+    title: "弔图主页",
     link_code: "https://github.com/umas2022/backyard",
     link_page: "https://umas2022.github.io/backyard",
     link_mirror: ""
@@ -78,9 +79,31 @@ const navi_index = reactive({
     link_code: "",
     link_page: "",
     link_mirror: ""
+  },
+  "test": {
+    icon: "",
+    title: "test",
+    link_code: "test",
+    link_page: "teest",
+    link_mirror: "tesssst"
   }
 })
 
+
+onMounted(() => {
+  const linkCards = document.querySelectorAll('.link-box .card-each');
+  let delay = 0;
+
+  linkCards.forEach((card, index) => {
+    setTimeout(() => {
+      card.classList.add('animate__animated', 'animate__fadeInRight');
+      (card as HTMLElement).style.display = 'block';
+    }, delay);
+
+    delay += 200; // Adjust the delay as needed
+  });
+
+})
 
 
 </script>
@@ -130,9 +153,14 @@ div.home {
     display: flex;
     align-items: center;
 
-    div.link-box{
+    div.link-box {
       width: 100%;
       height: auto;
+
+      div.card-each{
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 }
