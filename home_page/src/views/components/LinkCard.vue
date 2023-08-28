@@ -9,12 +9,12 @@
 
 
         <!-- 右侧按钮 -->
-        <div class="btn-box">
+        <!-- <div class="btn-box">
             <div class="divider" v-if="link_json.link_code != ''"></div>
             <div class="button" v-if="link_json.link_code != ''" @click="goto(link_json.link_code)">code</div>
             <div class="divider" v-if="link_json.link_mirror != ''"></div>
             <div class="button" v-if="link_json.link_mirror != ''" @click="goto(link_json.link_mirror)">mirror</div>
-        </div>
+        </div> -->
 
     </div>
     <div style="height: 20px;"></div>
@@ -68,7 +68,7 @@ div.link-card {
     display: flex;
     align-items: center;
 
-
+    user-select: none; // 禁止文本选中
 }
 
 .link-card:hover {

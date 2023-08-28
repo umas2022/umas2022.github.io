@@ -64,7 +64,7 @@ const navi_index = reactive({
   "ubk": {
     icon: "ubk.png",
     title: "极简记账(迁移中)",
-    link_code: "https://github.com/umas2022/ubk_page",
+    link_code: "http://123.249.20.87:17225/",
     link_page: "https://umas2022.github.io/ubk_page/",
     link_mirror: ""
   },
