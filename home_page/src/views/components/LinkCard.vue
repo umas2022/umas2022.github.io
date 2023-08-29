@@ -69,6 +69,9 @@ div.link-card {
     align-items: center;
 
     user-select: none; // 禁止文本选中
+
+    transition: all 0.2s; /* 添加过渡效果到宽度，1秒过渡时间 */
+
 }
 
 .link-card:hover {
@@ -123,6 +126,7 @@ div.btn-box {
 
 
     .button {
+
         cursor: pointer;
         margin: 5px;
         height: 80%;
@@ -131,7 +135,6 @@ div.btn-box {
         align-items: center;
         text-align: center;
         justify-content: center;
-
     }
 
     .button:hover {

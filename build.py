@@ -1,7 +1,7 @@
 # 打包并上传项目
 
 
-commit_txt = "fix"
+commit_txt = "update"
 
 
 import os

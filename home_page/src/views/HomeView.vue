@@ -123,7 +123,7 @@ onMounted(() => {
 
 div.home {
   background: #e0e0e049;
-  height: 100vh;
+  height: calc(100vh - 20px);
   width: 100%;
   display: flex;
   flex-direction: row;
