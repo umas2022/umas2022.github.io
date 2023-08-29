@@ -63,7 +63,7 @@ const navi_index = reactive({
   },
   "ubk": {
     icon: "ubk.png",
-    title: "极简记账(迁移中)",
+    title: "极简记账",
     link_code: "https://umas2022.github.io/ubk_page/",
     link_page: "http://123.249.20.87:17225/",
     link_mirror: ""
@@ -72,29 +72,29 @@ const navi_index = reactive({
     icon: "",
     title: "电脑配件(迁移中)",
     link_code: "",
-    link_page: "",
+    link_page: "https://umas2022.github.io/pctools/",
     link_mirror: ""
   },
   "auto_trans": {
     icon: "",
     title: "漫画ocr翻译(迁移中)",
     link_code: "",
-    link_page: "",
+    link_page: "https://umas2022.github.io/auto_trans/",
     link_mirror: ""
   },
   "poke_search": {
     icon: "",
     title: "宝可梦搜(迁移中)",
     link_code: "",
-    link_page: "",
+    link_page: "https://github.com/umas2022/poke_search",
     link_mirror: ""
   },
   "test": {
     icon: "",
     title: "test",
-    link_code: "test",
-    link_page: "teest",
-    link_mirror: "tesssst"
+    link_code: "",
+    link_page: "",
+    link_mirror: ""
   }
 })
 

@@ -84,7 +84,8 @@ div.link-card {
 // 左侧icon和title
 div.title-box {
     height: 100%;
-    width: 50%;
+    // width: 50%;
+    width: 100%;
     display: flex;
     align-items: center;
     cursor: pointer;
