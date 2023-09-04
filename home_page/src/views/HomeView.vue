@@ -72,14 +72,14 @@ const navi_index = reactive({
     icon: "",
     title: "电脑配件(迁移中)",
     link_code: "",
-    link_page: "https://umas2022.github.io/pctools/",
+    link_page: "https://github.com/umas2022/pctools",
     link_mirror: ""
   },
   "auto_trans": {
     icon: "",
     title: "漫画ocr翻译(迁移中)",
     link_code: "",
-    link_page: "https://umas2022.github.io/auto_trans/",
+    link_page: "https://github.com/umas2022/auto_trans",
     link_mirror: ""
   },
   "poke_search": {
