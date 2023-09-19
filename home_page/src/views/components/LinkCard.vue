@@ -1,20 +1,40 @@
 <template>
     <div class="link-card">
 
-        <div class="title-box" @click="goto(link_json.link_page)">
+        <div class="title-box">
             <img v-if="link_json.icon == ''" :src="'icon/null.svg' + link_json.icon" alt="">
             <img v-else :src="'icon/' + link_json.icon" alt="">
             <h3>{{ link_json.title }}</h3>
+
+        </div>
+        <div class="discription">
+            {{ link_json.description }}
         </div>
 
 
-        <!-- 右侧按钮 -->
-        <!-- <div class="btn-box">
-            <div class="divider" v-if="link_json.link_code != ''"></div>
-            <div class="button" v-if="link_json.link_code != ''" @click="goto(link_json.link_code)">code</div>
-            <div class="divider" v-if="link_json.link_mirror != ''"></div>
-            <div class="button" v-if="link_json.link_mirror != ''" @click="goto(link_json.link_mirror)">mirror</div>
-        </div> -->
+        <!-- 按钮 -->
+        <div class="btn-box">
+            <div class="divider"></div>
+            <div class="button" v-if="link_json.link_page != ''" @click="goto(link_json.link_page)">
+                <el-icon size="20">
+                    <DataAnalysis />
+                </el-icon>
+                page
+            </div>
+            <div class="button" v-if="link_json.link_mirror != ''" @click="goto(link_json.link_mirror)">
+                <el-icon size="20">
+                    <CopyDocument />
+                </el-icon>
+                mirror
+            </div>
+            <div class="button" v-if="link_json.link_code != ''" @click="goto(link_json.link_code)">
+                <el-icon size="20">
+                    <Edit />
+                </el-icon>
+                code
+            </div>
+
+        </div>
 
     </div>
     <div style="height: 20px;"></div>
@@ -26,10 +46,13 @@ import { onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 const router = useRouter();
 
+import { DataAnalysis, CopyDocument, Edit } from '@element-plus/icons-vue'
+
 const props = defineProps<{
     link_json: {
         icon: string;
         title: string;
+        description: string;
         link_code: string;
         link_page: string;
         link_mirror: string;
@@ -58,88 +81,76 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 div.link-card {
-    width: 60%;
-    height: 60px;
-    border-radius: 21px;
-    background: #e0e0e0;
-    box-shadow: 14px 14px 39px #b5b5b5,
-        -14px -14px 39px #ffffff;
+    font-family: sans-serif;
+    font-weight: 500;
+    font-size: 1em;
+
 
     display: flex;
+    flex-direction: column;
     align-items: center;
-
+    justify-content: center;
     user-select: none; // 禁止文本选中
+    transition: all 0.2s;
+    padding: 5px;
 
-    transition: all 0.2s; /* 添加过渡效果到宽度，1秒过渡时间 */
+    border-top: 2px solid rgba(0, 0, 0, 0.3);
 
-}
-
-.link-card:hover {
-    height: 70px;
-
-    background: #d7d7d7;
-    box-shadow: 23px 23px 57px #8b8b8b,
-        -23px -23px 57px #ffffff;
 }
 
 
 
-// 左侧icon和title
+
+// icon和title
 div.title-box {
-    height: 100%;
-    // width: 50%;
+    height: auto;
     width: 100%;
     display: flex;
     align-items: center;
-    cursor: pointer;
+    justify-content: center;
 
     h3 {
         display: inline-block;
     }
 
     img {
-        height: 70%;
+        width: 40px;
         padding-left: 10px;
         padding-right: 10px;
     }
 }
 
-// 右侧按钮
+// 按钮
 div.btn-box {
-    width: 50%;
-    height: 100%;
-    padding-right: 20px;
-
-
-
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
+    margin-top: 20px;
 
-    // 分割线
-
-    .divider {
-        height: 60%;
-        border-left: 2px solid rgba(0, 0, 0, 0.2);
-
+    .el-icon {
+        padding-right: 5px;
     }
-
 
     .button {
 
+        border-left: 1px solid rgba(0, 0, 0, 0.5);
+        border-right: 1px solid rgba(0, 0, 0, 0.5);
+
         cursor: pointer;
         margin: 5px;
-        height: 80%;
-        width: 80px;
+        height: 30px;
+        width: 100px;
         display: flex;
         align-items: center;
         text-align: center;
         justify-content: center;
+        transition: 0.5s;
     }
 
     .button:hover {
         border-radius: 10px;
-        background-color: rgba(0, 0, 0, 0.1);
+        background-color: rgba(0, 208, 255, 0.1);
+        color: red;
     }
 
 

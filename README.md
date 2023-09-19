@@ -9,9 +9,14 @@
 
 
 
+### 添加导航
+- assets/index.json添加导航信息
+- 调节HomeView.vue中.link-container的高度
+
 
 
 ### 更新记录
+- 2023.09.19: 重做ui，加入波浪按钮和滚动条监听
 - 2023.08.24: 创建项目
 
 
