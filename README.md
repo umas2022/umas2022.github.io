@@ -5,7 +5,7 @@
 
 
 ## 简介
-- 个人主页，整合GitHub个人项目
+- 个人主页，整合个人项目链接
 
 
 
@@ -17,7 +17,7 @@
 ```bash
 # 注意不要在服务器上build，会卡死！
 screen -r homepage
-python3 -m http.server 25220 --directory /root/project/umas2023.github.io/docs
+python3 -m http.server 25220 --directory /root/project/umas2022.github.io/docs
 ```
 
 
