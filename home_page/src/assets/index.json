@@ -18,7 +18,7 @@
     "hello_css": {
         "icon": "hello_css.png",
         "title": "css收藏夹",
-        "description":"居然能这样实现？拿来吧你！",
+        "description":"居然能这样实现？",
         "link_code": "https://github.com/umas2022/hello_css",
         "link_page": "https://umas2022.github.io/hello_css/",
         "link_mirror": ""
@@ -34,7 +34,7 @@
     "backyard": {
         "icon": "backyard.png",
         "title": "弔图主页",
-        "description":"收集快乐，每月更新",
+        "description":"收集快乐，每月随机更新",
         "link_code": "https://github.com/umas2022/backyard",
         "link_page": "https://umas2022.github.io/backyard",
         "link_mirror": ""

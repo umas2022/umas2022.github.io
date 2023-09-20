@@ -15,9 +15,9 @@
 - 镜像由python命令在screen中启动
 
 ```bash
+# 注意不要在服务器上build，会卡死！
 screen -r homepage
-cd docs/
-python3 -m http.server 25220
+python3 -m http.server 25220 --directory /root/project/umas2023.github.io/docs
 ```
 
 
