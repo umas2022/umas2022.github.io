@@ -5,12 +5,12 @@
         "description":"学无止境",
         "link_code": "https://github.com/umas2023/umas2023.github.io",
         "link_page": "https://umas2023.github.io/",
-        "link_mirror": ""
+        "link_mirror": "http://123.249.20.87:25221/"
     },
     "homepage": {
         "icon": "favicon.svg",
         "title": "个人主页",
-        "description":"甚至可以从我的个人主页跳转到我的个人主页",
+        "description":"在这里可以从我的个人主页跳转到我的个人主页",
         "link_code": "https://github.com/umas2022/umas2022.github.io",
         "link_page": "https://umas2022.github.io/",
         "link_mirror": "http://123.249.20.87:25220/"
