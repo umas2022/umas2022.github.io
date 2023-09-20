@@ -16,7 +16,7 @@
         "link_mirror": "http://123.249.20.87:25220/"
     },
     "learning_factory": {
-        "icon": "",
+        "icon": "amtc.jpg",
         "title": "学习工厂",
         "description":"学习工厂项目工厂教学和资产管理平台",
         "link_code": "https://gitee.com/umas/lf_localfront",
