@@ -20,7 +20,7 @@
     color: black;
     border: 0.15em solid black;
     border-radius: 1.2em;
-    transition: 3s;
+    transition: 0.5s;
     cursor: pointer;
     slot{
         cursor: pointer;
@@ -60,6 +60,7 @@
 .button:hover,
 .button:focus {
     color: rgb(255, 0, 0);
+    border-radius: 1em;
 }
 
 // 波浪颜色

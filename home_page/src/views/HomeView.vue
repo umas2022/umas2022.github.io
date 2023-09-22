@@ -16,13 +16,25 @@
         <span>umas' awesome homepage</span> <br>
         <span>Learning | Recording | Sharing | (Be Happy)</span><br>
       </div>
-      <!-- <a href="https://github.com/umas2022/umas2022.github.io">About this page</a> -->
-      <div class="btn-container animate__animated animate__fadeIn">
-        <WaveButton @click="goto('https://umas2023.github.io/')">Blog</WaveButton>
-        <WaveButton @click="goto('https://github.com/umas2022')">GitHub</WaveButton>
-        <WaveButton @click="goto('https://github.com/umas2022/umas2022.github.io')">About</WaveButton>
-        <WaveButton @click="scroll_bottom">Contact</WaveButton>
+
+      <!-- 玻璃卡片按钮 -->
+      <div class="glass-container">
+        <div class="glass" style="--r:-15;" data-text="Blog" @click="goto('https://umas2023.github.io/')">
+          <font-awesome-icon :icon="['fas', 'blog']" />
+        </div>
+        <div class="glass" style="--r:5;" data-text="GitHub" @click="goto('https://github.com/umas2022')">
+          <font-awesome-icon :icon="['fab', 'github']" />
+        </div>
+        <div class="glass" style="--r:25;" data-text="About"
+          @click="goto('https://github.com/umas2022/umas2022.github.io')">
+          <font-awesome-icon icon="fa-solid fa-code" />
+        </div>
+        <div class="glass" style="--r:-15;" data-text="Contact" @click="scroll_bottom">
+          <font-awesome-icon :icon="['far', 'envelope']" />
+        </div>
       </div>
+
+
       <div class="rear-container  animate__animated animate__bounce">
         <el-icon size="40">
           <ArrowDown />
@@ -45,8 +57,12 @@
   </div>
 </template>
 
-
 <script lang="ts" setup>
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faBlog,faCode } from '@fortawesome/free-solid-svg-icons'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
+import { faEnvelope } from '@fortawesome/free-regular-svg-icons'
+library.add(faBlog,faGithub,faCode,faEnvelope)
 
 import LinkCard from "./components/LinkCard.vue"
 import WaveButton from "./components/WaveButton.vue"
@@ -66,13 +82,13 @@ const bg_url = '/background/pattern-' + bg_num + '.svg';
 
 // 按钮跳转
 const goto = (url: string) => {
-    console.log(url)
-    window.location.href = url
+  console.log(url)
+  window.location.href = url
 }
 // 按钮跳转到底部
-const scroll_bottom = ()=>{
-    // 获取文档内容的高度
-    const documentHeight = Math.max(
+const scroll_bottom = () => {
+  // 获取文档内容的高度
+  const documentHeight = Math.max(
     document.body.scrollHeight,
     document.documentElement.scrollHeight,
     document.body.offsetHeight,
@@ -111,9 +127,9 @@ onMounted(() => {
     let card_list = document.querySelectorAll(".card-each")
     card_list.forEach(card_each => {
       let card_element = card_each as HTMLElement
-      if(card_element.offsetTop < window.scrollY + window.innerHeight){
+      if (card_element.offsetTop < window.scrollY + window.innerHeight) {
         card_element.classList.add("active")
-      } else{
+      } else {
         card_element.classList.remove("active")
       }
     })
@@ -143,6 +159,7 @@ div.bg-box {
   background-repeat: repeat;
   background-size: 400px;
   z-index: -1;
+  opacity: 0.1;
 }
 
 div.home {
@@ -150,7 +167,8 @@ div.home {
   width: 100%;
   display: flex;
   flex-direction: column;
-  background-color: rgba(255, 255, 255, 0.9);
+  // background-color: rgba(255, 255, 255, 0.9);
+  background-color: #1b384c64;
 }
 
 .home svg {
@@ -223,18 +241,75 @@ div.link-container {
   .card-each {
     width: 70%;
     transition: 1s;
-    transform: translate(0,400px) scale(0);
+    transform: translate(0, 400px) scale(0);
   }
-  .card-each.active{
-    transform: translate(0,0) scale(1);
+
+  .card-each.active {
+    transform: translate(0, 0) scale(1);
   }
 }
 
 // 底部信息
-div.info-container{
+div.info-container {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 50px;
+}
+
+
+
+
+// 玻璃卡片
+
+.glass-container {
+  margin-top: 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.glass-container .glass {
+  cursor: pointer;
+  position: relative;
+  width: 160px;
+  height: 200px;
+  background: linear-gradient(#fff2, transparent);
+  backdrop-filter: blur(10px);
+  border: solid 1px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 25px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: 0.5s;
+
+  margin: 0 -45px;
+  transform: rotate(calc(var(--r) * 1deg));
+
+}
+
+.glass-container:hover .glass {
+  transform: rotate(0deg);
+  margin: 0 20px;
+}
+
+.glass-container .glass::before {
+  content: attr(data-text);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: black;
+  text-align: center;
+}
+
+.glass-container .glass svg{
+  font-size: 3em;
+  color: black;
 }
 </style>

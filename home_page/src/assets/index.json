@@ -83,7 +83,7 @@
     "poke_search": {
         "icon": "",
         "title": "宝可梦搜(迁移中)",
-        "description":"太晶团战一等三",
+        "description":"宝可梦条件搜索，附带一个wiki的爬虫",
         "link_code": "https://github.com/umas2022/poke_search",
         "link_page": "",
         "link_mirror": ""
