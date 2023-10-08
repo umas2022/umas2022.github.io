@@ -3,8 +3,13 @@
 
     <!-- <el-button @click="test_button">test</el-button> -->
 
+    <!-- 背景灯光 -->
+    <BackLight/>
+    <!-- 背景色 -->
+    <div class="bg-color"></div>
     <!-- 背景图 -->
-    <div class="bg-box" :style="{ backgroundImage: `url(${bg_url})` }"></div>
+    <div class="bg-img" :style="{ backgroundImage: `url(${bg_url})` }"></div>
+
 
     <!-- 主页 -->
     <div class="home-center">
@@ -12,27 +17,16 @@
         <img src="favicon.svg" alt="logo">
       </div>
       <div class="txt-container animate__animated animate__fadeIn">
-        <h1>u导航</h1>
+        <h1>u导航
+          <img title="开灯" class="switch" src="static/switch.svg" alt="" style="width: 25px;cursor: pointer;" @click="click_switch">
+        </h1>
         <span>umas' awesome homepage</span> <br>
         <span>Learning | Recording | Sharing | (Be Happy)</span><br>
       </div>
 
       <!-- 玻璃卡片按钮 -->
-      <div class="glass-container">
-        <div class="glass" style="--r:-15;" data-text="Blog" @click="goto('https://umas2023.github.io/')">
-          <font-awesome-icon :icon="['fas', 'blog']" />
-        </div>
-        <div class="glass" style="--r:5;" data-text="GitHub" @click="goto('https://github.com/umas2022')">
-          <font-awesome-icon :icon="['fab', 'github']" />
-        </div>
-        <div class="glass" style="--r:25;" data-text="About"
-          @click="goto('https://github.com/umas2022/umas2022.github.io')">
-          <font-awesome-icon icon="fa-solid fa-code" />
-        </div>
-        <div class="glass" style="--r:-15;" data-text="Contact" @click="scroll_bottom">
-          <font-awesome-icon :icon="['far', 'envelope']" />
-        </div>
-      </div>
+      <HomeCard/>
+      
 
 
       <div class="rear-container  animate__animated animate__bounce">
@@ -59,16 +53,20 @@
 
 <script lang="ts" setup>
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faBlog,faCode } from '@fortawesome/free-solid-svg-icons'
+import { faBlog, faCode } from '@fortawesome/free-solid-svg-icons'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { faEnvelope } from '@fortawesome/free-regular-svg-icons'
-library.add(faBlog,faGithub,faCode,faEnvelope)
+library.add(faBlog, faGithub, faCode, faEnvelope)
 
 import LinkCard from "./components/LinkCard.vue"
 import WaveButton from "./components/WaveButton.vue"
+import BackLight from "./components/BackLight.vue"
+import HomeCard from "./components/HomeCard.vue"
+
 
 import { onMounted, reactive, ref } from "vue";
-
+import { useStore } from 'vuex';
+const store = useStore()
 
 import { ArrowDown } from '@element-plus/icons-vue'
 
@@ -80,29 +78,21 @@ const bg_num = Math.floor(Math.random() * 33) + 1;
 const bg_url = '/background/pattern-' + bg_num + '.svg';
 
 
-// 按钮跳转
-const goto = (url: string) => {
-  console.log(url)
-  window.location.href = url
+// 开灯
+const click_switch=()=>{
+  store.state.darkmode = !store.state.darkmode
+  let switch_element = document.querySelector<HTMLElement>(".switch")
+  if(store.state.darkmode){
+    switch_element!.style.transform = 'scaleY(-1)'
+  }
+  else{
+    switch_element!.style.transform = 'scaleY(1)'
+  }
 }
-// 按钮跳转到底部
-const scroll_bottom = () => {
-  // 获取文档内容的高度
-  const documentHeight = Math.max(
-    document.body.scrollHeight,
-    document.documentElement.scrollHeight,
-    document.body.offsetHeight,
-    document.documentElement.offsetHeight,
-    document.body.clientHeight,
-    document.documentElement.clientHeight
-  );
 
-  // 将滚动条滚动到最底端
-  window.scrollTo({
-    top: documentHeight,
-    behavior: 'smooth' // 可选，平滑滚动效果
-  });
-}
+
+
+
 
 
 // 底部箭头持续抖动
@@ -152,29 +142,41 @@ const test_button = () => {
 <style lang="scss" scoped>
 @import 'animate.css';
 
-div.bg-box {
+// 背景色
+div.bg-color {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: -3;
+  background-color: rgba(27, 56, 76, 0.4);
+}
+
+// 背景图
+div.bg-img {
   position: absolute;
   height: 100%;
   width: 100%;
   background-repeat: repeat;
   background-size: 400px;
-  z-index: -1;
+  z-index: -2;
   opacity: 0.1;
 }
+
+
+
+
 
 div.home {
   position: relative;
   width: 100%;
   display: flex;
   flex-direction: column;
-  // background-color: rgba(255, 255, 255, 0.9);
-  background-color: #1b384c64;
+
+  svg {
+    opacity: 0.5;
+  }
 }
 
-.home svg {
-  opacity: 0.5;
-  /* 设置透明度为 0.5 */
-}
 
 // 主页
 div.home-center {
@@ -202,6 +204,7 @@ div.home-center {
     font-family: sans-serif;
     font-weight: 400;
     font-size: 18px;
+
   }
 
   .btn-container {
@@ -260,56 +263,5 @@ div.info-container {
 
 
 
-// 玻璃卡片
 
-.glass-container {
-  margin-top: 20px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.glass-container .glass {
-  cursor: pointer;
-  position: relative;
-  width: 160px;
-  height: 200px;
-  background: linear-gradient(#fff2, transparent);
-  backdrop-filter: blur(10px);
-  border: solid 1px rgba(255, 255, 255, 0.1);
-  box-shadow: 0 25px 25px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  transition: 0.5s;
-
-  margin: 0 -45px;
-  transform: rotate(calc(var(--r) * 1deg));
-
-}
-
-.glass-container:hover .glass {
-  transform: rotate(0deg);
-  margin: 0 20px;
-}
-
-.glass-container .glass::before {
-  content: attr(data-text);
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 40px;
-  background-color: rgba(255, 255, 255, 0.05);
-  color: black;
-  text-align: center;
-}
-
-.glass-container .glass svg{
-  font-size: 3em;
-  color: black;
-}
 </style>
