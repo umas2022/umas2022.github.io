@@ -49,7 +49,7 @@
     },
     "backyard": {
         "icon": "backyard.png",
-        "title": "弔图主页",
+        "title": "后院仓库",
         "description":"收集快乐，每月随机更新",
         "link_code": "https://github.com/umas2022/backyard",
         "link_page": "https://umas2022.github.io/backyard",

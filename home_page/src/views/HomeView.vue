@@ -239,7 +239,6 @@ div.link-container {
   flex-direction: column;
   align-items: center;
 
-  height: 2500px;
 
   .card-each {
     width: 70%;
@@ -258,6 +257,7 @@ div.info-container {
   align-items: center;
   justify-content: center;
   margin-bottom: 50px;
+  margin-top: 100px;
 }
 
 
