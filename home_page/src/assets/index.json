@@ -18,7 +18,7 @@
     "learning_factory": {
         "icon": "amtc.jpg",
         "title": "学习工厂",
-        "description":"学习工厂项目工厂教学和资产管理平台",
+        "description":"amtc:学习工厂项目工厂教学和资产管理平台",
         "link_code": "https://gitee.com/umas/lf_localfront",
         "link_page": "",
         "link_mirror": "http://123.249.20.87:25222/"
@@ -26,7 +26,7 @@
     "iiir": {
         "icon": "iiir.png",
         "title": "标识解析",
-        "description":"工业互联网标识解析二级节点项目内网前端",
+        "description":"amtc:工业互联网标识解析二级节点项目内网前端",
         "link_code": "https://gitee.com/umas/iiir-server-node-v2",
         "link_page": "",
         "link_mirror": "http://123.249.20.87:25223/"
@@ -74,17 +74,9 @@
     },
     "auto_trans": {
         "icon": "",
-        "title": "漫画ocr翻译(迁移中)",
+        "title": "日语ocr翻译(迁移中)",
         "description":"添加了苦手友好的汉字注音栏，翻译接口调用谷歌和gpt",
         "link_code": "https://github.com/umas2022/auto_trans",
-        "link_page": "",
-        "link_mirror": ""
-    },
-    "poke_search": {
-        "icon": "",
-        "title": "宝可梦搜(迁移中)",
-        "description":"宝可梦条件搜索，附带一个wiki的爬虫",
-        "link_code": "https://github.com/umas2022/poke_search",
         "link_page": "",
         "link_mirror": ""
     },

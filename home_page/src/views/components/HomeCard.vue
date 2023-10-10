@@ -98,6 +98,7 @@ watch(() => store.state.darkmode, () => {
     border: solid 1px rgba(255, 255, 255, 0.1);
     box-shadow: 0 25px 25px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
+    opacity: 0.9;
 
     display: flex;
     align-items: center;
